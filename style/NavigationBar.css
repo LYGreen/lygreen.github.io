@@ -1,0 +1,47 @@
+*{
+    /* 全局 */
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+
+a{
+    text-decoration: none;
+    color:#bdbdbd ;
+}
+
+
+ul,li{
+    list-style:none;
+    display: flex;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    background-color:#1c228c;
+    justify-content:space-between;
+}
+
+.logo{
+    margin-left: 300px;
+    text-align: center;
+    
+    padding-top: 5px;
+    height: 56px;
+
+}
+
+.list{
+    margin-right: 300px;
+}
+
+.listText{
+    
+    height: 56px;
+    text-align: center;
+    padding-top: 14px;
+    /*border: 1px solid white;*/
+}
