@@ -1,0 +1,19 @@
+.book-table{
+
+}
+
+.book-table ul{
+    
+    margin: 0%;
+    padding: 0%;
+}
+
+.book-table li{
+    display: inline;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.book-table a{
+    text-decoration: none;
+}

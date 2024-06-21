@@ -1,0 +1,56 @@
+.navigation{
+    font-size: 24px;
+    text-align: center;
+    margin: 0%;
+    padding: 24px;
+    
+    background-color: rgb(13, 64, 103);
+}
+
+/*
+.navigation ui{
+    font-size: 25px;
+    text-align: center;
+    margin: 0%;
+    padding: 0%;
+}
+*/
+
+.navigation li{
+    border-radius: 8px;
+    list-style-type: none;
+    display: inline;
+    border: 1px solid #0d6ab1;
+    box-shadow: 4px 4px 2px black;
+}
+
+.navigation li a{
+    border-radius: 8px;
+    color: #000;
+    padding-left: 32px;
+    padding-right: 32px;
+    text-decoration: none;
+    text-align: center;
+
+    /*background-color: rgb(46, 154, 197);*/
+    background-color: rgb(14, 191, 144);
+    transition: background-color 0.3s;
+}
+
+.navigation li a:hover{
+    /*background-color: rgb(0, 115, 172);*/
+    background-color: rgb(13, 98, 102);
+    animation: navigation_hover 0.3s;
+
+}
+
+@keyframes navigation_hover{
+    from{
+        /*background-color: rgb(46, 154, 197);*/
+        background-color: rgb(14, 191, 144);
+    }
+    to{
+        /*background-color: rgb(0, 115, 172);*/
+        background-color: rgb(13, 98, 102);
+    }
+}

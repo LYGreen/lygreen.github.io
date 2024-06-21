@@ -1,0 +1,33 @@
+.document{
+    
+    font-size: 24px;
+    line-height: 35px;
+
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 16px;
+    padding-top: 1px;
+    margin-bottom: 16px;
+    padding-bottom: 1px;
+    background-color: rgb(73, 169, 214);
+
+    
+    border-radius: 10px;
+    box-shadow: 5px 5px 3px black;
+}
+
+/*
+.document_head{
+    padding-top: 32px;
+    border-radius: 10px;
+    background-color: purple;
+}
+*/
+
+.tabbed{
+    text-indent: 48px;
+}
+
+.centered{
+    text-align: center;
+}
