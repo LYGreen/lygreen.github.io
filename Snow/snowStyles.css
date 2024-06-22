@@ -13,7 +13,7 @@ body, html{
 }
 
 .snowflake{
-    position: absolute;
+    position: fixed;
     top: -10px;
     left: 0px;
     margin: 0%;
