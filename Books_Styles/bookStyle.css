@@ -1,19 +1,60 @@
 .book-table{
-
+    border-collapse: collapse;
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.book-table ul{
-    
-    margin: 0%;
-    padding: 0%;
+.book-table th{
+    border: 3px solid black;
 }
 
-.book-table li{
-    display: inline;
+.book-table td{
+    border: 2px solid black;
+}
+
+.book-table img{
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+    width: 128px;
+    height: 192px;
+}
+
+.book-table p{
     text-decoration: none;
-    list-style-type: none;
+    text-align: center;
+    width: 192px;
+    margin-left: 16px;
+    margin-right: 16px;
 }
 
 .book-table a{
+    display: block;
     text-decoration: none;
+    text-align: center;
+    color: black;
+    margin-left: 64px;
+    margin-right: 64px;
+    border-radius: 5px;
+    border: 2px solid black;
+    background-color: rgb(42, 159, 209);
+    box-shadow: 3px 3px 1px black;
+    transition: background-color 0.5s;
+}
+
+.book-table a:hover{
+    animation: 0.5s book-name;
+    background-color: rgb(10, 124, 185);
+    
+}
+
+@keyframes book-name {
+    from {
+        background-color: rgb(42, 159, 209);
+    }
+    to {
+        background-color: rgb(10, 124, 185);
+    }
 }
