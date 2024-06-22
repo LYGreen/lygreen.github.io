@@ -1,0 +1,43 @@
+body, html{
+    margin: 0%;
+    padding: 0%;
+}
+
+.snow-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0%;
+    padding: 0%;
+    pointer-events: none;
+}
+
+.snowflake{
+    position: fixed;
+    top: -10px;
+    left: 0px;
+    margin: 0%;
+    padding: 0%;
+    opacity: 0.7;
+    position: none;
+
+    background-color: snow;
+    border-radius: 50%;
+
+    animation: SnowFall linear infinite;
+}
+
+@keyframes SnowFall {
+    25% {
+        transform: translate(1vw, 25vh)
+    }
+    50% {
+        transform: translate(0vw, 50vh)
+    }
+    75% {
+        transform: translate(1vw, 75vh)
+    }
+    100% {
+        transform: translate(0vw, 100vh)
+    }
+}
