@@ -288,8 +288,8 @@ hr {
     color: gray;
 }
 
-.content :deep(p:has(img)) {
-    overflow: auto;
+.content :deep(img) {
+    width: 100%;
 }
 
 .content :deep(.vp-code) {
