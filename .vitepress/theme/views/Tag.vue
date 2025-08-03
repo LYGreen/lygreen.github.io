@@ -72,20 +72,20 @@ function lazyLoadTags() {
     </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+
+@use "@/_global.scss";
 
 #tag {
+    @include global.home-padding;
+
     display: flex;
     align-items: flex-start;
     flex-direction: row;
     gap: 48px;
-    padding-top: 48px;
-    padding-left: 200px;
-    padding-right: 200px;
-    padding-bottom: 48px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: global.$phone-width) {
     #tag {
         align-items: unset;
         flex-direction: column;
@@ -106,7 +106,7 @@ function lazyLoadTags() {
 }
 
 .item {
-    background-color: var(--main-bg-color);
+    background-color: var(--primary-color-transparent);
     box-shadow: var(--float-component-shadow);
 
     display: block;
@@ -118,10 +118,10 @@ function lazyLoadTags() {
     line-height: 96px;
 
     transition: transform 0.3s ease, var(--transition-attribute, background-color 0s);
-}
 
-.item:hover {
-    transform: translateY(-6px);
+    &:hover {
+        transform: translateY(-6px);
+    }
 }
 
 </style>

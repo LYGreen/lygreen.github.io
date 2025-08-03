@@ -136,11 +136,11 @@ function loadPagination() {
         <Profile />
         <div class="articles">
             <div class="item" v-for="(item, index) in posts" v-bind:key="index">
-                <a class="item-header" :href="base + item.url">
+                <a class="header" :href="base + item.url">
                     <h3>{{ item.title }}</h3>
                     <p>{{ item.description }}</p>
                 </a>
-                <a class="item-footer">
+                <a class="footer">
                     <div class="category">
                         <a :href="base + 'category/' + i" v-for="(i, idx) in item.category" v-bind:key="idx">
                             {{ i }}
@@ -164,20 +164,20 @@ function loadPagination() {
     </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+
+@use '@/global';
 
 #home {
     display: flex;
     align-items: flex-start;
     flex-direction: row;
     gap: 48px;
-    padding-top: 48px;
-    padding-left: 200px;
-    padding-right: 200px;
-    padding-bottom: 48px;
+
+    @include global.home-padding;
 }
 
-@media (max-width: 768px) {
+@media (max-width: global.$phone-width) {
     #home {
         align-items: unset;
         flex-direction: column;
@@ -195,39 +195,44 @@ function loadPagination() {
 }
 
 .item {
+    padding: 16px 32px 16px 32px;
+
+    /* theme */
+    background-color: var(--primary-color-transparent);
+
     display: flex;
     flex-direction: column;
 
-    background-color: var(--main-bg-color);
-    box-shadow: var(--float-component-shadow);
-    padding: 16px 32px 16px 32px;
-    border-radius: 12px;
-
-    transition: transform 0.3s ease, var(--transition-attribute, background-color 0s);
-}
-
-.item:hover {
-    transform: translateY(-6px);
-}
-
-.item-header {
-    flex: 1;
-}
-
-.item-footer {
-    bottom: 0px;
-}
-
-.item-footer a {
-    padding: 8px 8px 8px 8px;
-    border-radius: 8px;
     
     box-shadow: var(--float-component-shadow);
-    transition: transform 0.3s ease, var(--transition-attribute, background-color 0s);
-}
 
-.item-footer a:hover {
-    transform: translateY(-6px);
+    border-radius: global.$main-border-radius;
+
+    transition: transform 0.3s ease, var(--transition-attribute, background-color 0s);
+    
+    &:hover {
+        transform: translateY(-6px);
+    }
+
+    .header {
+        flex: 1;
+    }
+
+    .footer {
+        bottom: 0px;
+    }
+
+    .footer a {
+        padding: 8px 8px 8px 8px;
+        border-radius: 8px;
+        
+        box-shadow: var(--float-component-shadow);
+        transition: transform 0.3s ease, var(--transition-attribute, background-color 0s);
+
+        &:hover {
+            transform: translateY(-6px);
+        }
+    }
 }
 
 .category {
@@ -255,24 +260,24 @@ function loadPagination() {
 .pagination {
     display: flex;
     flex-direction: row;
-}
 
-.pagination a {
-    box-shadow: var(--float-component-shadow);
-    
-    display: block;
-    padding: 12px 12px 12px 12px;
-    border-radius: 8px;
-    
-    transition: transform 0.3s ease, var(--transition-attribute, background-color 0s);
-}
+    a {
+        box-shadow: var(--float-component-shadow);
+        
+        display: block;
+        padding: 12px 12px 12px 12px;
+        border-radius: 8px;
+        
+        transition: transform 0.3s ease, var(--transition-attribute, background-color 0s);
 
-.pagination a:hover {
-    transform: translateY(-6px);
-}
+        &:hover {
+            transform: translateY(-6px);
+        }
+    }
 
-.pagination .active {
-    background-color: var(--secondary-bg-color);
+    .active {
+        background-color: var(--secondary-bg-color);
+    }
 }
 
 </style>

@@ -1,0 +1,30 @@
+$phone-width: 768px;
+$main-border-radius: 12px;
+
+$light-primary-color: #f5f9ff;
+$light-primary-text-color: #1A1A1A;
+$light-secondary-color: #e1ecf7;
+$light-secondary-text-color: #4B4B4B;
+$light-float-component-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+$dark-primary-color: #3d3e3f;
+$dark-primary-text-color: #F0F4F8;
+$dark-secondary-color: #1f2020;
+$dark-secondary-text-color: #B0B8C1;
+$dark-float-component-shadow: 0 4px 8px rgba(255, 255, 255, 0.04);
+
+$alpha: 0.65;
+
+@mixin home-padding {
+    padding-top: 48px;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-bottom: 48px;
+}
+
+@mixin article-padding {
+    padding-top: 48px;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-bottom: 48px;
+}

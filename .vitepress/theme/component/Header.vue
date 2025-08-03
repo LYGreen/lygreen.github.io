@@ -15,12 +15,13 @@ function toggleTheme() {
     let theme = document.documentElement.getAttribute('data-theme');
     theme = theme == 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', theme);
-    document.documentElement.setAttribute('data-transition', '');
+    // document.documentElement.setAttribute('data-transition', '');
     localStorage.setItem('data-theme', theme);
 }
 
 function onMediaChanged(e: MediaQueryListEvent) {
-    document.documentElement.setAttribute('data-transition', '');
+    // document.documentElement.setAttribute('data-transition', '');
+    console.log("aaa");
     if (e.matches) {
         document.documentElement.setAttribute('data-theme', 'dark');
     } else {
@@ -41,7 +42,6 @@ onMounted(() => {
     <div id="header">
         <div class="left">
             <a class="block home" :href="base">首页</a>
-            <a class="block article" :href="base + 'articles/pages/1'">文章</a>
             <a class="block category" :href="base + 'category/'">分类</a>
             <a class="block tag" :href="base + 'tag/'">标签</a>
         </div>
@@ -58,7 +58,7 @@ onMounted(() => {
 <style scoped>
 
 #header {
-    background-color: var(--main-bg-color);
+    background-color: var(--primary-color);
     box-shadow: var(--float-component-shadow);
 
     width: 100%;
@@ -76,7 +76,7 @@ onMounted(() => {
     text-align: center;
     padding: 8px 16px;
     border-radius: 8px;
-    transition: transform 0.3s ease, var(--text-transition-attribute);
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .block:hover {

@@ -1,3 +1,4 @@
+import path from 'path'
 import { defineConfig, defineConfigWithTheme } from 'vitepress'
 import ThemeConfig from './theme/themeConfig'
 
@@ -63,6 +64,20 @@ export default defineConfigWithTheme<ThemeConfig>({
       `
     ],
   ],
+  vite: {
+    // css: {
+    //   preprocessorOptions: {
+    //     scss: {
+    //       additionalData: `@use '@/style.scss' as *;`
+    //     }
+    //   }
+    // },
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './theme'),
+      }
+    }
+  },
   themeConfig: {
     data: "Hello World",
   }

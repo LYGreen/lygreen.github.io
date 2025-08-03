@@ -72,17 +72,17 @@ function lazyLoadCategories() {
     </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+
+@use "@/_global.scss";
 
 #category {
+    @include global.home-padding;
+    
     display: flex;
     align-items: flex-start;
     flex-direction: row;
     gap: 48px;
-    padding-top: 48px;
-    padding-left: 200px;
-    padding-right: 200px;
-    padding-bottom: 48px;
 }
 
 @media (max-width: 768px) {
@@ -106,7 +106,7 @@ function lazyLoadCategories() {
 }
 
 .item {
-    background-color: var(--main-bg-color);
+    background-color: var(--primary-color-transparent);
     box-shadow: var(--float-component-shadow);
 
     display: block;

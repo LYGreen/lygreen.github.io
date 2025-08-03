@@ -44,8 +44,12 @@ function loadUserInfo() {
     </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+
+@use "@/_global.scss";
+
 .profile {
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,12 +62,36 @@ function loadUserInfo() {
     top: calc(50px + 48px);
     width: 240px;
     flex-shrink: 0;
-
-    background-color: var(--main-bg-color);
+    
+    background-color: var(--primary-color-transparent);
     box-shadow: var(--float-component-shadow);
+
+    .avatar {
+        position: relative;
+    }
+
+    .emoji {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 32px;
+        height: 32px;
+        background-color: var(--secondary-color);
+        box-shadow: var(--float-component-shadow);
+        text-align: center;
+        line-height: 32px;
+        border-radius: 50%;
+    }
+
+    img {
+        box-shadow: var(--float-component-shadow);
+        aspect-ratio: 1;
+        width: 128px;
+        border-radius: 50%;
+    }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: global.$phone-width) {
     .profile {
         position: unset;
         width: unset;
@@ -72,29 +100,5 @@ function loadUserInfo() {
     }
 }
 
-.profile .avatar {
-    position: relative;
-}
-
-.profile .emoji {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 32px;
-    height: 32px;
-    background-color: var(--secondary-bg-color);
-    box-shadow: var(--float-component-shadow);
-    text-align: center;
-    line-height: 32px;
-    border-radius: 50%;
-}
-
-.profile img {
-    box-shadow: var(--float-component-shadow);
-    aspect-ratio: 1;
-    width: 128px;
-    border-radius: 50%;
-
-}
 </style>
 

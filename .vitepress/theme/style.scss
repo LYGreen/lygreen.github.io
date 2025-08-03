@@ -1,15 +1,11 @@
-
+/* 
 :root {
-  --main-bg-color: #F5F9FF;
-  --secondary-bg-color: #E1ECF7;
-  /* --tertiary-bg-color: #cfe4f9; */
+  --main-bg-color: #f5f9ff;
+  --secondary-bg-color: #e1ecf7;
+
   --main-text-color: #1A1A1A;
   --secondary-text-color: #4B4B4B;
-  /* --tertiary-text-color: #333333; */
 
-  --main-color: #2CA6A4;
-  --button-color: #197278;
-  --dividing-line-color: #D0DAE3;
 
   --basic-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   --float-component-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -19,26 +15,14 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
   --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.2);
-
-  /* 一开始就能让字体颜色有渐变效果，不需要等按了切换主题才有这个效果 */
-  --text-transition-attribute: color 0.3s ease;
-  --background-transition-attribute: background-color 0.3s ease;
-
-  /* 其他变量 */
-  /* --header-height: 50px; */
 }
 
 :root[data-theme='dark'] {
-  --main-bg-color: #0D1B2A;
-  --secondary-bg-color: #1B263B;
-  /* --tertiary-bg-color: #141e30; */
+  --main-bg-color: #373738;
+  --secondary-bg-color: #1f2122;
+
   --main-text-color: #F0F4F8;
   --secondary-text-color: #B0B8C1;
-  /* --tertiary-text-color: #ccd2d9; */
-
-  --main-color: #5BD8D4;
-  --button-color: #63E6E2;
-  --dividing-line-color: #2C3E50;
 
   --basic-card-shadow: 0 1px 3px rgba(255, 255, 255, 0.03);
   --float-component-shadow: 0 4px 8px rgba(255, 255, 255, 0.04);
@@ -53,6 +37,25 @@
 [data-transition] {
   --transition-attribute: background-color 0.6s, color 0.6s, box-shadow 0.6s;
 }
+*/
+
+@use "@/_global.scss";
+
+:root {
+  --primary-color: #{global.$light-primary-color};
+  --primary-color-transparent: #{rgba(global.$light-primary-color, global.$alpha)}; 
+  --primary-text-color: #{global.$light-primary-text-color};
+  --secondary-color: #{global.$light-secondary-color};
+  --float-component-shadow: #{global.$light-float-component-shadow};
+  
+  &[data-theme='dark'] {
+    --primary-color: #{global.$dark-primary-color};
+    --primary-color-transparent: #{rgba(global.$dark-primary-color, global.$alpha)}; 
+    --primary-text-color: #{global.$dark-primary-text-color};
+    --secondary-color: #{global.$dark-secondary-color};
+    --float-component-shadow: #{global.$dark-float-component-shadow};
+  }
+}
 
 html {
   font-family: Arial, Helvetica;
@@ -62,12 +65,12 @@ html {
 body {
   margin: 0 0 0 0;
 
-  background-color: var(--main-bg-color);
+  background-color: var(--secondary-color);
   transition: var(--transition-attribute);
 }
 
 a, span, div, h1, h2, h3, h4, h5, h6, hr {
-  color: var(--main-text-color);
+  color: var(--primary-text-color);
   transition: var(--transition-attribute);
 }
 
@@ -80,8 +83,4 @@ ul {
 a, ul, ol {
   text-decoration: none;
   list-style: none;
-}
-
-.ignore-transition {
-  transition: none;
 }

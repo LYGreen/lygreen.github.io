@@ -158,7 +158,9 @@ function sendMessage(message) {
     </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+
+@use "@/_global.scss";
 
 hr {
     width: 100%;
@@ -169,10 +171,8 @@ hr {
     align-items: flex-start;
     flex-direction: row;
     gap: 48px;
-    padding-top: 48px;
-    padding-left: 200px;
-    padding-right: 200px;
-    padding-bottom: 48px;
+
+    @include global.article-padding;
 }
 
 .toc {
@@ -189,25 +189,25 @@ hr {
     width: 240px;
     flex-shrink: 0;
 
-    background-color: var(--main-bg-color);
+    background-color: var(--primary-color);
     box-shadow: var(--float-component-shadow);
+
+    label {
+        text-align: center;
+        width: 100%;
+    }
+
+    :deep(ul li a) {
+        color: var(--main-text-color);
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: gray;
+        }
+    }
 }
 
-.toc label {
-    text-align: center;
-    width: 100%;
-}
-
-.toc :deep(ul li a) {
-    color: var(--main-text-color);
-    transition: color 0.3s ease;
-}
-
-.toc :deep(ul li a):hover {
-    color: gray
-}
-
-@media (max-width: 768px) {
+@media (max-width: global.$phone-width) {
     #article {
         align-items: unset;
         flex-direction: column;
@@ -231,7 +231,7 @@ hr {
 }
 
 .content {
-    background-color: var(--main-bg-color);
+    background-color: var(--primary-color);
     box-shadow: var(--float-component-shadow);
     
     display: flex;
@@ -240,60 +240,63 @@ hr {
 
     padding: 16px 32px 16px 32px;
     border-radius: 12px;
-}
 
-.content .content-header .header-elements {
-    flex: 1;
-}
+    .content-header .header-elements {
+        flex: 1;
+    }
+    
+    .content-body {
+        :deep(.vp-adaptive-theme) {
+            position: relative;
 
-.content :deep(.vp-adaptive-theme) {
-    position: relative;
+            padding: 8px 8px 8px 8px;
+            border-radius: 12px;
 
-    padding: 8px 8px 8px 8px;
-    border-radius: 12px;
+            background-color: var(--secondary-color);
+        }
 
-    background-color: var(--secondary-bg-color);
-}
+        :deep(.copy) {
+            float: right;
+            border-radius: 4px;
+            border-width: 0px;
+            background-color: var(--primary-color);
+            box-shadow: var(--float-component-shadow);
+            color: var(--main-text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
 
-.content :deep(.copy) {
-    float: right;
-    border-radius: 4px;
-    border-width: 0px;
-    background-color: var(--main-bg-color);
-    box-shadow: var(--float-component-shadow);
-    color: var(--main-text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
+            &:hover {
+                background-color: var(--secondary-color);
+            }
 
-.content :deep(.copy:hover) {
-    background-color: var(--secondary-bg-color);
-}
+            &::after {
+                content: "复制代码";
+            }
+        }
 
-.content :deep(.copy::after) {
-    content: "复制代码";
-}
+        :deep(.copied::after) {
+            content: "复制成功";
+        }
 
-.content :deep(.copied::after) {
-    content: "复制成功";
-}
+        :deep(ul li a), :deep(p a) {
+            display: inline-block;
+            text-decoration: underline;
+            transition: transform 0.3s ease, var(--text-transition-attribute);
+        }
 
-.content :deep(ul li a), .content :deep(p a) {
-    display: inline-block;
-    text-decoration: underline;
-    transition: transform 0.3s ease, var(--text-transition-attribute);
-}
+        :deep(ul li a:hover), .content :deep(p a:hover) {
+            transform: translateY(-2px);
+            color: gray;
+        }
 
-.content :deep(ul li a:hover), .content :deep(p a:hover) {
-    transform: translateY(-2px);
-    color: gray;
-}
+        :deep(img) {
+            width: 100%;
+        }
 
-.content :deep(img) {
-    width: 100%;
-}
+        :deep(.vp-code) {
+            overflow-x: auto;
+        }
 
-.content :deep(.vp-code) {
-    overflow-x: auto;
+    }
 }
 
 :root #article :deep(.content span) {

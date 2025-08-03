@@ -127,20 +127,20 @@ async function setCurrentCategory(category: string) {
     </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+
+@use "@/_global.scss";
 
 #category-page {
+    @include global.home-padding;
+
     display: flex;
     align-items: flex-start;
     flex-direction: row;
     gap: 48px;
-    padding-top: 48px;
-    padding-left: 200px;
-    padding-right: 200px;
-    padding-bottom: 48px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: global.$phone-width) {
     #category-page {
         align-items: unset;
         flex-direction: column;
@@ -157,7 +157,7 @@ async function setCurrentCategory(category: string) {
 }
 
 .header {
-    background-color: var(--main-bg-color);
+    background-color: var(--primary-color-transparent);
     box-shadow: var(--float-component-shadow);
     border-radius: 12px;
     padding: 16px 16px 16px 16px;
@@ -170,36 +170,36 @@ async function setCurrentCategory(category: string) {
     display: flex;
     flex-direction: column;
 
-    background-color: var(--main-bg-color);
+    background-color: var(--primary-color-transparent);
     box-shadow: var(--float-component-shadow);
     padding: 16px 32px 16px 32px;
     border-radius: 12px;
 
     transition: transform 0.3s ease, var(--transition-attribute, background-color 0s);
-}
 
-.item:hover {
-    transform: translateY(-6px);
-}
+    &:hover {
+        transform: translateY(-6px);
+    }
 
-.item-header {
-    flex: 1;
-}
+    .item-header {
+        flex: 1;
+    }
 
-.item-footer {
-    bottom: 0px;
-}
+    .item-footer {
+        bottom: 0px;
 
-.item-footer a {
-    padding: 8px 8px 8px 8px;
-    border-radius: 8px;
-    
-    box-shadow: var(--float-component-shadow);
-    transition: transform 0.3s ease, var(--transition-attribute, background-color 0s);
-}
+        a {
+            padding: 8px 8px 8px 8px;
+            border-radius: 8px;
+            
+            box-shadow: var(--float-component-shadow);
+            transition: transform 0.3s ease, var(--transition-attribute, background-color 0s);
 
-.item-footer a:hover {
-    transform: translateY(-6px);
+            &:hover {
+                transform: translateY(-6px);
+            }
+        }
+    }
 }
 
 .category {
