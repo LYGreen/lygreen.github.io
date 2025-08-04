@@ -162,10 +162,6 @@ function sendMessage(message) {
 
 @use "@/_global.scss";
 
-hr {
-    width: 100%;
-}
-
 #article {
     display: flex;
     align-items: flex-start;
@@ -191,6 +187,10 @@ hr {
 
     background-color: var(--primary-color);
     box-shadow: var(--float-component-shadow);
+
+    hr {
+        width: 99.56%;
+    }
 
     label {
         text-align: center;
@@ -234,9 +234,8 @@ hr {
     background-color: var(--primary-color);
     box-shadow: var(--float-component-shadow);
     
-    display: flex;
-    flex-direction: column;
     flex: 1;
+    overflow-x: auto;
 
     padding: 16px 32px 16px 32px;
     border-radius: 12px;
