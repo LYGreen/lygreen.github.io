@@ -33,7 +33,7 @@ function buildToC() {
     
     headings.forEach((heading, index) => {
         const level = parseInt(heading.tagName.substring(1));
-        console.log(heading);
+        
         counters[level - 1]++;
         for (let i = level; i < 6; i++) {
             counters[i] = 0;
