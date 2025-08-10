@@ -47,13 +47,27 @@
   --primary-text-color: #{global.$light-primary-text-color};
   --secondary-color: #{global.$light-secondary-color};
   --float-component-shadow: #{global.$light-float-component-shadow};
-  
+  --red: #{global.$light-red};
+  --orange: #{global.$light-orange};
+  --blue: #{global.$light-blue};
+  --green: #{global.$light-green};
+  --yellow: #{global.$light-yellow};
+  --purple: #{global.$light-purple};
+  --gray: #{global.$light-gray};
+
   &[data-theme='dark'] {
     --primary-color: #{global.$dark-primary-color};
     --primary-color-transparent: #{rgba(global.$dark-primary-color, global.$alpha)}; 
     --primary-text-color: #{global.$dark-primary-text-color};
     --secondary-color: #{global.$dark-secondary-color};
     --float-component-shadow: #{global.$dark-float-component-shadow};
+    --red: #{global.$dark-red};
+    --orange: #{global.$dark-orange};
+    --blue: #{global.$dark-blue};
+    --green: #{global.$dark-green};
+    --yellow: #{global.$dark-yellow};
+    --purple: #{global.$dark-purple};
+    --gray: #{global.$dark-gray};
   }
 }
 

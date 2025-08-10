@@ -276,6 +276,68 @@ function sendMessage(message) {
             content: "复制成功";
         }
 
+        :deep(.custom-block) {
+            border-radius: 12px;
+            box-shadow: var(--float-component-shadow);
+            
+            .custom-block-title {
+                padding-top: 16px;
+                padding-bottom: 0px;
+            }
+
+            p {
+                padding: 0px 16px 16px 16px;
+            }
+        }
+
+        :deep(.info) {
+            background-color: var(--blue);
+
+            .custom-block-title::before, .custom-block-title::after {
+                content: "ℹ️";
+            }
+        }
+
+        :deep(.tip) {
+            background-color: var(--green);
+
+            .custom-block-title::before, .custom-block-title::after {
+                content: "💡";
+            }
+        }
+
+        :deep(.warning) {
+            background-color: var(--orange);
+
+            .custom-block-title::before, .custom-block-title::after {
+                content: "⚠️";
+            }
+        }
+
+        :deep(.danger) {
+            background-color: var(--red);
+
+            .custom-block-title::before, .custom-block-title::after {
+                content: "🚨";
+            }
+        }
+
+        :deep(.details) {
+            background-color: var(--purple);
+
+            summary {
+                padding: 16px 16px 16px 16px;
+            }
+
+            summary::before {
+                content: "📄";
+            }
+
+            p {
+                margin-top: 0px;
+            }
+        }
+
         :deep(ul li a), :deep(p a) {
             display: inline-block;
             text-decoration: underline;
