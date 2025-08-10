@@ -2,13 +2,13 @@
 title: Arch Linux 离线安装教程
 description: 给一台没有网的设备安装 Arch Linux
 createdTime: '2024/10/26 00:43:41'
-updatedTime: '2025/7/13 22:23:30'
+updatedTime: '2025/8/10 18:16:32'
 readingTime: 4
 category:
   - Linux
 tag:
   - Arch Linux
-hash: 0e56aee47af23dead2d8e2c4332930c16fad4ffb99146711dd7ed65ff25049b5
+hash: ce7155f9849448e8c80801347e6655dcb606c8e72adce59a22abfda3b61fe069
 ---
 
 # 虚拟机离线安装 Arch Linux
@@ -86,7 +86,10 @@ pacman --root /mnt --cachedir /mnt/var/lib/pacman/pkg -Sy
 ```bash
 pacman --root /mnt --cachedir /mnt/var/cache/pacman/pkg -Sw base linux linux-firmware grub vim dhcpcd
 ```
-
+::: info
+如果下载包的过程中遇到签名不正确的问题，这是因为用于管理和验证软件包签名的公钥没有更新，需要对公钥集合进行更新，命令：  
+```sudo pacman -Sy archlinux-keyring```
+:::
 下载好之后进行压缩
 
 ```bash
