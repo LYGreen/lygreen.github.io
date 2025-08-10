@@ -21,7 +21,7 @@ function toggleTheme() {
 
 function onMediaChanged(e: MediaQueryListEvent) {
     // document.documentElement.setAttribute('data-transition', '');
-    console.log("aaa");
+
     if (e.matches) {
         document.documentElement.setAttribute('data-theme', 'dark');
     } else {

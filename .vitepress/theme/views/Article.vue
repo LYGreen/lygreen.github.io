@@ -172,6 +172,8 @@ function sendMessage(message) {
 }
 
 .toc {
+
+
     display: flex;
     flex-direction: column;
 
@@ -204,6 +206,14 @@ function sendMessage(message) {
         &:hover {
             color: gray;
         }
+    }
+
+    :deep(ul, ol, li) {
+        padding-left: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-decoration: none;
+        list-style: none;
     }
 }
 
@@ -338,25 +348,28 @@ function sendMessage(message) {
             }
         }
 
-        :deep(ul li a), :deep(p a) {
+        :deep(a) {
             display: inline-block;
             text-decoration: underline;
             transition: transform 0.3s ease, color 0.3s ease;
         }
 
-        :deep(ul li a:hover), .content :deep(p a:hover) {
+        :deep(a:hover) {
             transform: translateY(-2px);
             color: gray;
         }
 
         :deep(img) {
-            width: 100%;
+            max-width: 100%;
         }
 
         :deep(.vp-code) {
             overflow-x: auto;
         }
 
+        :deep(ol), :deep(ul) {
+            padding-inline-start: 24px;
+        }
     }
 }
 

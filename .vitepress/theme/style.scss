@@ -46,6 +46,7 @@
   --primary-color-transparent: #{rgba(global.$light-primary-color, global.$alpha)}; 
   --primary-text-color: #{global.$light-primary-text-color};
   --secondary-color: #{global.$light-secondary-color};
+  --secondary-text-color: #{global.$light-secondary-text-color};
   --float-component-shadow: #{global.$light-float-component-shadow};
   --red: #{global.$light-red};
   --orange: #{global.$light-orange};
@@ -60,6 +61,7 @@
     --primary-color-transparent: #{rgba(global.$dark-primary-color, global.$alpha)}; 
     --primary-text-color: #{global.$dark-primary-text-color};
     --secondary-color: #{global.$dark-secondary-color};
+    --secondary-text-color: #{global.$dark-secondary-text-color};
     --float-component-shadow: #{global.$dark-float-component-shadow};
     --red: #{global.$dark-red};
     --orange: #{global.$dark-orange};
@@ -80,21 +82,14 @@ body {
   margin: 0 0 0 0;
 
   background-color: var(--secondary-color);
-  transition: var(--transition-attribute);
+  // transition: background-color 0.3s ease;
 }
 
 a, span, div, h1, h2, h3, h4, h5, h6, hr {
   color: var(--primary-text-color);
-  transition: var(--transition-attribute);
+  // transition: color 0.3s ease;
 }
 
-ul {
-  padding-left: 0px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-a, ul, ol {
+a {
   text-decoration: none;
-  list-style: none;
 }
