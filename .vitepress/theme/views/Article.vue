@@ -279,7 +279,7 @@ function sendMessage(message) {
         :deep(ul li a), :deep(p a) {
             display: inline-block;
             text-decoration: underline;
-            transition: transform 0.3s ease, var(--text-transition-attribute);
+            transition: transform 0.3s ease, color 0.3s ease;
         }
 
         :deep(ul li a:hover), .content :deep(p a:hover) {
