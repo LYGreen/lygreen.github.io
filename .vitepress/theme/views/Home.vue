@@ -262,6 +262,7 @@ function loadPagination() {
     flex-direction: row;
 
     a {
+        background-color: var(--secondary-color);
         box-shadow: var(--float-component-shadow);
         
         display: block;
@@ -276,7 +277,7 @@ function loadPagination() {
     }
 
     .active {
-        background-color: var(--secondary-bg-color);
+        background-color: var(--primary-color-transparent);
     }
 }
 
