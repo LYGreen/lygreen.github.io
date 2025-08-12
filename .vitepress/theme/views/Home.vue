@@ -262,14 +262,14 @@ function loadPagination() {
     flex-direction: row;
 
     a {
-        background-color: var(--secondary-color);
+        background-color: var(--secondary-color-transparent);
         box-shadow: var(--float-component-shadow);
         
         display: block;
         padding: 12px 12px 12px 12px;
         border-radius: 8px;
         
-        transition: transform 0.3s ease, var(--transition-attribute, background-color 0s);
+        transition: transform 0.3s ease;
 
         &:hover {
             transform: translateY(-6px);

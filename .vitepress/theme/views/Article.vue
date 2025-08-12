@@ -116,7 +116,7 @@ function sendMessage(message) {
     if (!iframe) {
         return;
     }
-    console.log(iframe.contentWindow);
+    // console.log(iframe.contentWindow); // 输出: global 对象
     iframe.contentWindow?.postMessage({
         giscus: message,
     }, 'https://giscus.app');
@@ -187,7 +187,7 @@ function sendMessage(message) {
     width: 240px;
     flex-shrink: 0;
 
-    background-color: var(--primary-color);
+    background-color: var(--primary-color-transparent);
     box-shadow: var(--float-component-shadow);
 
     hr {
@@ -241,7 +241,7 @@ function sendMessage(message) {
 }
 
 .content {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color-transparent);
     box-shadow: var(--float-component-shadow);
     
     flex: 1;

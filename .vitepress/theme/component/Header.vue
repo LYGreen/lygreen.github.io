@@ -58,7 +58,7 @@ onMounted(() => {
 <style scoped>
 
 #header {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color-transparent);
     box-shadow: var(--float-component-shadow);
 
     width: 100%;

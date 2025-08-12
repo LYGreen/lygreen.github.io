@@ -21,7 +21,7 @@ onMounted(() => {
 <style scoped>
 
 #footer {
-    background-color: var(--main-bg-color);
+    background-color: var(--primary-color-transparent);
     box-shadow: var(--float-component-shadow);
 
     text-align: center;
