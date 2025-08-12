@@ -3,6 +3,7 @@ import { useData } from 'vitepress'
 
 import AppHeader from './component/Header.vue'
 import AppFooter from './component/Footer.vue';
+import PinkFlower from './component/PinkFlower.vue';
 
 import Home from './views/Home.vue';
 import Category from './views/Category.vue';
@@ -34,6 +35,7 @@ const { site, page, frontmatter } = useData()
         <footer>
             <AppFooter />
         </footer>
+        <PinkFlower />
     </div>
 </template>
 
