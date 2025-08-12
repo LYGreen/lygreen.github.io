@@ -13,6 +13,9 @@ class Flower {
     private y: number;
     private dx: number;
     private dy: number;
+    static image: HTMLImageElement;
+    static width: number = 16;
+    static height: number = 16;
 
     constructor(x: number, y: number, dx: number = 0, dy: number = 0) {
         this.x = x;
@@ -45,29 +48,19 @@ class Flower {
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
-        const petalCount = 5;
-        const offset = 4;
-
-        for (let i = 0; i < petalCount; i++) {
-            ctx.save();
-            ctx.fillStyle = 'pink';
-            ctx.beginPath();
-            let angle = (Math.PI * 2 / petalCount) * i;
-            let offsetX = Math.cos(angle) * offset;
-            let offsetY = Math.sin(angle) * offset;
-            ctx.arc(this.x + offsetX, this.y + offsetY, 5, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.restore();
-        }
-        
-        ctx.fillStyle = 'yellow';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
-        ctx.fill();
+        // ctx.save();
+        ctx.drawImage(
+            Flower.image, 
+            this.x + Flower.width * 0.5, 
+            this.y + Flower.height * 0.5, 
+            Flower.width,
+            Flower.height
+        );
+        // ctx.restore();
     }
 }
 
-const maxCount = 25;
+const maxCount = 75;
 const minSpeed = 150;
 const maxSpeed = 350;
 const flowers: Array<Flower> = [];
@@ -76,6 +69,8 @@ let ctx: CanvasRenderingContext2D;
 let lastTime: number = 0;
 
 onMounted(() => {
+    Flower.image = new Image();
+    Flower.image.src = "/img/flower-64x64.png";
     canvas = document.getElementById("canvas") as HTMLCanvasElement;
     ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     canvas.addEventListener("contextmenu", canvasPreventContextmenu);
