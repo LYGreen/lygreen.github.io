@@ -2,13 +2,13 @@
 title: linux在不安装桌面环境的情况下运行gui程序
 description: linux实现不安装桌面环境，运行gui程序
 createdTime: '2025/8/10 18:51:43'
-updatedTime: '2025/8/11 15:59:18'
+updatedTime: '2025/8/13 21:40:32'
 readingTime: 2
 category:
   - Linux
 tag:
   - Arch Linux
-hash: 56b59f678bb6a41f792622ae9c8d018d506d2ec797ac217d45f1c5bec92ecb52
+hash: 96afc85109178713c6f7a73a6a814acec2f57309fe162665f2cb0ebe26f40daa
 ---
 在linux做开发的时候，可能会需要开发gui程序，比如opencv，但是桌面环境太大了，会比较占资源，所以这里会尝试不安装桌面环境来启动gui程序
 
@@ -61,13 +61,18 @@ xclock
 :::
 
 ## X11转发
-1. 需要下载ssh客户端和xserver，这里使用的是[PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)和[VcXsrv](https://vcxsrv.com/)
-2. 打开vcxsrv，会在后台运行一个x服务器(设置全部默认即可)  
+1. 编辑文件 ```/etc/ssh/sshd_config``` ，开启x11转发，重启服务
+```bash
+sudo vim /etc/ssh/sshd_config # 把 '#X11Forwarding yes' 的 '#' 去掉，保存
+systemctl restart sshd # 重启 sshd 服务
+```
+2. 本机下载ssh客户端和xserver，这里使用的是[PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)和[VcXsrv](https://vcxsrv.com/)
+3. 打开vcxsrv，会在后台运行一个x服务器(设置全部默认即可)  
 ![](/img-run-gui-application-without-desktop-environment/img2.png)
-3. 运行putty，打开x11转发  
+4. 运行putty，打开x11转发  
 ![](/img-run-gui-application-without-desktop-environment/img3.png)
-4. 输入ip连接到arch linux
-5. 接下来运行xclock，可以看到有小窗口弹了出来
+5. 输入ip连接到arch linux
+6. 接下来运行xclock，可以看到有小窗口弹了出来
 ```bash
 xclock
 ```
