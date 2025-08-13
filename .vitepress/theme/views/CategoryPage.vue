@@ -44,24 +44,19 @@ onMounted(async () => {
     _intersectionObserver = new IntersectionObserver(observerCallback);
     _intersectionObserver.observe(document.getElementsByClassName("loadding-trigger")[0]);
     currentCategory.value = _currentCategory;
-    console.log(_categoriesPageInfo);
-    console.log("Mounted");
 });
 
 onUnmounted(() => {
     _intersectionObserver.disconnect();
-    console.log("Unmounted");
 });
 
 function observerReset() {
-    console.log(_loadedPage);
     _intersectionObserver.disconnect();
     // _intersectionObserver = new IntersectionObserver(observerCallback);
     _intersectionObserver.observe(document.getElementsByClassName("loadding-trigger")[0]);
 }
 
 async function observerCallback(entries: IntersectionObserverEntry[]) {
-    console.log("callback");
     if (entries[0].intersectionRatio > 0 && _loadedPage < _categoriesPageInfo.totalPages) {
         const received = await requestPosts();
         if (received) {
