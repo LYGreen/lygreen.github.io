@@ -33,17 +33,29 @@ export default defineConfigWithTheme<ThemeConfig>({
       dark: 'github-dark',
     }
   },
-  // base: "/make-blog/",
+  transformPageData(pageData, ctx) {
+    pageData.frontmatter.head ??= [];
+    if (pageData.relativePath == 'index.md' || pageData.relativePath.startsWith("posts/")) {
+      pageData.frontmatter.head.push([
+        'meta',
+        {
+          name: 'robots',
+          content: 'index, nofollow',
+        },
+        ''
+      ]);
+    } else {
+      pageData.frontmatter.head.push([
+        'meta',
+        {
+          name: 'robots',
+          content: 'noindex, nofollow',
+        },
+        ''
+      ]);
+    }
+  },
   head: [
-    // [
-    //   'link',
-    //   {
-    //     rel: 'icon',
-    //     href: '/favicon.ico',
-    //     type: 'image/x-icon',
-    //   },
-    //   '',
-    // ],
     [
       'script',
       {},

@@ -3,4 +3,5 @@ Allow: /
 Disallow: /category
 Disallow: /tag
 Allow: /posts/
+Disallow: *.html
 sitemap: https://lygreen.github.io/sitemap.xml
