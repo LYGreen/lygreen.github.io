@@ -48,6 +48,8 @@
   --secondary-color: #{global.$light-secondary-color};
   --secondary-color-transparent: #{rgba(global.$light-secondary-color, global.$alpha)};
   --secondary-text-color: #{global.$light-secondary-text-color};
+  --tertiary-color: #{global.$light-tertiary-color};
+  --tertiary-color-transparent: #{rgba(global.$light-tertiary-color, global.$alpha)};
   --float-component-shadow: #{global.$light-float-component-shadow};
   --red: #{global.$light-red};
   --orange: #{global.$light-orange};
@@ -64,6 +66,8 @@
     --secondary-color: #{global.$dark-secondary-color};
     --secondary-color-transparent: #{rgba(global.$dark-secondary-color, global.$alpha)};
     --secondary-text-color: #{global.$dark-secondary-text-color};
+    --tertiary-color: #{global.$dark-tertiary-color};
+    --tertiary-color-transparent: #{rgba(global.$dark-tertiary-color, global.$alpha)};
     --float-component-shadow: #{global.$dark-float-component-shadow};
     --red: #{global.$dark-red};
     --orange: #{global.$dark-orange};

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import { onMounted } from 'vue';
+import Search from './Search.vue';
 
 const base = (import.meta as any).env.BASE_URL
 
@@ -47,6 +48,7 @@ onMounted(() => {
         </div>
 
         <div class="right">
+            <Search />
             <button @click="toggleTheme">切换主题</button>
             <a class="block github" href="https://github.com/LYGreen/lygreen.github.io" target="_blank">Github</a>
 

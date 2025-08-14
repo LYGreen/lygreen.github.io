@@ -206,7 +206,7 @@ function loadPagination() {
     
     box-shadow: var(--float-component-shadow);
 
-    border-radius: global.$main-border-radius;
+    border-radius: global.$primary-border-radius;
 
     transition: transform 0.3s ease, var(--transition-attribute, background-color 0s);
     

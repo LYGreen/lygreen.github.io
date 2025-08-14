@@ -12,6 +12,7 @@ import Tag from './views/Tag.vue';
 import TagPage from './views/TagPage.vue';
 import AppArticle from './views/Article.vue';
 import Page404 from './views/Page404.vue';
+import SearchPage from './views/SearchPage.vue';
 
 const { site, page, frontmatter } = useData()
 
@@ -30,6 +31,7 @@ const { site, page, frontmatter } = useData()
             <CategoryPage v-else-if="frontmatter.layout === 'category-page'" />
             <Tag v-else-if="frontmatter.layout === 'tag'" />
             <TagPage v-else-if="frontmatter.layout === 'tag-page'" />
+            <SearchPage v-else-if="frontmatter.layout === 'search'" />
             <AppArticle v-else />
         </main>
         <footer>

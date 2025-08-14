@@ -4,10 +4,14 @@ import path from 'path';
 import { POSTS_DIR } from './execConfig.mjs'
 
 const count = process.argv[2];
+let name = process.argv[3];
 
 if (count == undefined) {
     console.log("Please input a count.");
     process.exit(-1);
+}
+if (name == undefined) {
+    name = "测试";
 }
 
 const today = new Date(Date.now()).toLocaleString('zh-cn');
@@ -33,13 +37,13 @@ hash: ''
         let content = new String(markdown);
         let categories = "";
         let tags = "";
-        content = content.replace("${title}", "测试标题 " + i);
-        content = content.replace("${description}", "测试描述 " + i);
+        content = content.replace("${title}", `${name}标题 ` + i);
+        content = content.replace("${description}", `${name}描述 ` + i);
         for (let j = 0; j < categoryCount; j++) {
-            categories += "\n  - 测试分类 " + Math.ceil(Math.random() * 99);
+            categories += `\n  - ${name}分类 ` + Math.ceil(Math.random() * 99);
         }
         for (let j = 0; j < categoryCount; j++) {
-            tags += "\n  - 测试标签 " + Math.ceil(Math.random() * 99);
+            tags += `\n  - ${name}标签 ` + Math.ceil(Math.random() * 99);
         }
         content = content.replace("${categories}", categories);
         content = content.replace("${tags}", tags);
