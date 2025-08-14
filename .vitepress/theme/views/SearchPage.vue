@@ -40,18 +40,23 @@ const searchText = ref("");
 onMounted(async () => {
     await requestPageInfo();
     _intersectionObserver = new IntersectionObserver(observerCallback);
-    _intersectionObserver.observe(document.getElementsByClassName("loadding-trigger")[0]);
 
-    reloadPage();
-
-    router.onAfterRouteChange = () => {
-        reloadPage();
+    router.onBeforePageLoad = (to) => {
+        _intersectionObserver.disconnect();
     }
+    
+    router.onAfterRouteChange = (to) => {
+        reloadPage();
+        _intersectionObserver.observe(document.getElementsByClassName("loadding-trigger")[0]);
+    }
+
+    // 参数可以忽略，因为没有用到
+    router.onAfterRouteChange(window.location.pathname + window.location.search);
 });
 
 onUnmounted(() => {
+    router.onBeforePageLoad = undefined;
     router.onAfterRouteChange = undefined;
-    _intersectionObserver.disconnect();
 });
 
 function reloadPage() {
@@ -59,7 +64,6 @@ function reloadPage() {
     _searchText = params.get("value") as string;
 
     _loadedPage = 0;
-    observerReset();
     posts.value.splice(0, posts.value.length);
     searchText.value = _searchText;
 }

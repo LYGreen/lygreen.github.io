@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { useData, useRoute, useRouter } from 'vitepress';
-import { onMounted, reactive, ref } from 'vue';
+import { onMounted, onUnmounted, reactive, ref } from 'vue';
 import Profile from '../component/Profile.vue';
 import axios from 'axios';
 
@@ -33,15 +33,6 @@ let _posts: Post[] = [];
 const posts = ref<Post[]>([]);
 const currentPage = ref<number>(1);
 const pagination = ref<Array<any>>([]);
-    
-async function setPage(page: number) {
-    currentPage.value = page;
-    await Promise.all([
-        requestPosts()
-    ]);
-    loadPosts();
-    loadPagination();
-};
 
 onMounted(async () => {
     getCurrentPageNumber();
@@ -53,9 +44,33 @@ onMounted(async () => {
 
     loadPosts();
     loadPagination();
+
+    router.onAfterRouteChange = (to) => {
+        if (to == "/") {
+            setPage(1);
+        } else {
+            const match = to.match(/^\/page\/(\d+)$/);
+            if (match != null) {
+                setPage(Number.parseInt(match[1]))
+            }
+        }
+    }
+
+    router.onAfterRouteChange(window.location.pathname + window.location.search);
 });
 
+onUnmounted(() => {
+    router.onAfterRouteChange = undefined;
+});
 
+async function setPage(page: number) {
+    currentPage.value = page;
+    await Promise.all([
+        requestPosts()
+    ]);
+    loadPosts();
+    loadPagination();
+};
 
 // ChatGPT
 function getPagination(currentPage: number, totalPages: number, delta = 2) : Array<any> {
@@ -155,7 +170,7 @@ function loadPagination() {
             </div>
 
             <div class="pagination">
-                <a @click="item == '...' ? '' : setPage(Number.parseInt(item))" :href="item == 1 ? base : (item == '...' ? '' : base + 'page/' + item)" v-for="(item, index) in pagination" v-bind:key="index" :class="{ active: item == currentPage }">
+                <a :href="item == 1 ? base : (item == '...' ? '' : base + 'page/' + item)" v-for="(item, index) in pagination" v-bind:key="index" :class="{ active: item == currentPage }">
                     {{ item }}
                 </a>
             </div>
