@@ -43,15 +43,31 @@ function gotoSearchPage() {
     background-color: var(--tertiary-color-transparent);
 }
 
+@media (max-width: global.$phone-width) {
+    #search {
+        width: 160px;
+    }
+}
+
+.feather-search {
+    flex-shrink: 0;
+}
+
 .text-box {
     font-size: 16px;
     border-style: none;
+    width: 100%;
+    color: var(--primary-text-color);
     background-color: rgba(0, 0, 0, 0);
     flex: 1;
 
     &:focus {
         outline: none;
     }
+}
+
+.text-box::placeholder {
+    color: var(--tertiary-text-color);
 }
 
 </style>
