@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Arch Linux 离线安装教程",
+    "description": "给一台没有网的设备安装 Arch Linux",
+    "createdTime": "2024/10/26 00:43:41",
+    "updatedTime": "2025/8/10 21:34:06",
+    "readingTime": 4,
+    "category": [
+      "Linux"
+    ],
+    "tag": [
+      "Arch Linux"
+    ],
+    "originBasename": "arch-linux-offline-install.md",
+    "url": "posts/arch-linux-offline-install.html"
+  }
+]
