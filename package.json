@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "generate-test-posts": "node exec/generate-test-posts.mjs",
+    "new-post": "node exec/new-post.mjs",
+    "update-posts": "node exec/update-posts.mjs",
+    "mdinfo-to-json": "node exec/mdinfo-to-json.mjs",
+    "exec-all": "npm run update-posts && npm run mdinfo-to-json",
+    "docs:dev": "npm run exec-all && vitepress dev",
+    "docs:build": "npm run exec-all && vitepress build",
+    "docs:preview": "npm run exec-all && vitepress preview",
+    "docs:dev-host": "npm run exec-all && vitepress dev --host"
+  },
+  "dependencies": {
+    "axios": "^1.10.0",
+    "gray-matter": "^4.0.3",
+    "vitepress": "^1.6.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.3",
+    "sass": "^1.89.2"
+  }
+}

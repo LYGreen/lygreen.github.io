@@ -1,0 +1,103 @@
+/* 
+:root {
+  --main-bg-color: #f5f9ff;
+  --secondary-bg-color: #e1ecf7;
+
+  --main-text-color: #1A1A1A;
+  --secondary-text-color: #4B4B4B;
+
+
+  --basic-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --float-component-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --emphasize-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --top-window-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme='dark'] {
+  --main-bg-color: #373738;
+  --secondary-bg-color: #1f2122;
+
+  --main-text-color: #F0F4F8;
+  --secondary-text-color: #B0B8C1;
+
+  --basic-card-shadow: 0 1px 3px rgba(255, 255, 255, 0.03);
+  --float-component-shadow: 0 4px 8px rgba(255, 255, 255, 0.04);
+  --emphasize-shadow: 0 0 6px rgba(91, 216, 212, 0.3);
+  --top-window-shadow: 0 0 12px rgba(255, 255, 255, 0.08), 0 0 20px rgba(0, 255, 255, 0.1);
+
+  --shadow-sm: 0 1px 3px rgba(255, 255, 255, 0.03);
+  --shadow-md: 0 4px 8px rgba(255, 255, 255, 0.05);
+  --shadow-lg: 0 0 12px rgba(91, 216, 212, 0.25);
+}
+
+[data-transition] {
+  --transition-attribute: background-color 0.6s, color 0.6s, box-shadow 0.6s;
+}
+*/
+
+@use "@/_global.scss";
+
+:root {
+  --primary-color: #{global.$light-primary-color};
+  --primary-color-transparent: #{rgba(global.$light-primary-color, global.$alpha)}; 
+  --primary-text-color: #{global.$light-primary-text-color};
+  --secondary-color: #{global.$light-secondary-color};
+  --secondary-color-transparent: #{rgba(global.$light-secondary-color, global.$alpha)};
+  --secondary-text-color: #{global.$light-secondary-text-color};
+  --tertiary-color: #{global.$light-tertiary-color};
+  --tertiary-color-transparent: #{rgba(global.$light-tertiary-color, global.$alpha)};
+  --tertiary-text-color: #{global.$light-tertiary-text-color};
+  --float-component-shadow: #{global.$light-float-component-shadow};
+  --red: #{global.$light-red};
+  --orange: #{global.$light-orange};
+  --blue: #{global.$light-blue};
+  --green: #{global.$light-green};
+  --yellow: #{global.$light-yellow};
+  --purple: #{global.$light-purple};
+  --gray: #{global.$light-gray};
+
+  &[data-theme='dark'] {
+    --primary-color: #{global.$dark-primary-color};
+    --primary-color-transparent: #{rgba(global.$dark-primary-color, global.$alpha)}; 
+    --primary-text-color: #{global.$dark-primary-text-color};
+    --secondary-color: #{global.$dark-secondary-color};
+    --secondary-color-transparent: #{rgba(global.$dark-secondary-color, global.$alpha)};
+    --secondary-text-color: #{global.$dark-secondary-text-color};
+    --tertiary-color: #{global.$dark-tertiary-color};
+    --tertiary-color-transparent: #{rgba(global.$dark-tertiary-color, global.$alpha)};
+    --tertiary-text-color: #{global.$dark-tertiary-text-color};
+    --float-component-shadow: #{global.$dark-float-component-shadow};
+    --red: #{global.$dark-red};
+    --orange: #{global.$dark-orange};
+    --blue: #{global.$dark-blue};
+    --green: #{global.$dark-green};
+    --yellow: #{global.$dark-yellow};
+    --purple: #{global.$dark-purple};
+    --gray: #{global.$dark-gray};
+  }
+}
+
+html {
+  font-family: Arial, Helvetica;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 0 0 0;
+
+  background-color: var(--secondary-color);
+  // transition: background-color 0.3s ease;
+}
+
+a, span, div, h1, h2, h3, h4, h5, h6, hr {
+  color: var(--primary-text-color);
+  // transition: color 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+}
