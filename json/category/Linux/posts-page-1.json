@@ -1,0 +1,32 @@
+[
+  {
+    "title": "linux在不安装桌面环境的情况下运行gui程序",
+    "description": "linux实现不安装桌面环境，运行gui程序",
+    "createdTime": "2025/8/10 18:51:43",
+    "updatedTime": "2025/10/16 11:57:45",
+    "readingTime": 2,
+    "category": [
+      "Linux"
+    ],
+    "tag": [
+      "Arch Linux"
+    ],
+    "originBasename": "run-gui-application-without-desktop-environment.md",
+    "url": "posts/run-gui-application-without-desktop-environment.html"
+  },
+  {
+    "title": "Arch Linux 离线安装教程",
+    "description": "给一台没有网的设备安装 Arch Linux",
+    "createdTime": "2024/10/26 00:43:41",
+    "updatedTime": "2025/8/10 21:34:06",
+    "readingTime": 4,
+    "category": [
+      "Linux"
+    ],
+    "tag": [
+      "Arch Linux"
+    ],
+    "originBasename": "arch-linux-offline-install.md",
+    "url": "posts/arch-linux-offline-install.html"
+  }
+]
