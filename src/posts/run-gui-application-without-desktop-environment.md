@@ -2,13 +2,13 @@
 title: linux在不安装桌面环境的情况下运行gui程序
 description: linux实现不安装桌面环境，运行gui程序
 createdTime: '2025/8/10 18:51:43'
-updatedTime: '2025/8/13 21:40:32'
+updatedTime: '2025/10/16 12:06:18'
 readingTime: 2
 category:
   - Linux
 tag:
   - Arch Linux
-hash: 96afc85109178713c6f7a73a6a814acec2f57309fe162665f2cb0ebe26f40daa
+hash: 97e4910685b92b3c29bf1c8a0e3a1af07b08fda83fc52787d78ba411b69940ef
 ---
 在linux做开发的时候，可能会需要开发gui程序，比如opencv，但是桌面环境太大了，会比较占资源，所以这里会尝试不安装桌面环境来启动gui程序
 
