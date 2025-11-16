@@ -1,0 +1,50 @@
+[
+  {
+    "title": "连接 MongoDB Atlas 时遇到的 srv 无法解析问题",
+    "description": "在连接 MongoDB Atlas 时遇到的 srv 解析问题的解决方法",
+    "createdTime": "2025/11/16 16:34:24",
+    "updatedTime": "2025/11/16 17:00:10",
+    "readingTime": 1,
+    "category": [
+      "数据库",
+      "其他问题"
+    ],
+    "tag": [
+      "MongoDB",
+      "Node.js"
+    ],
+    "originBasename": "mongodb-srv-resolution.md",
+    "url": "posts/mongodb-srv-resolution.html"
+  },
+  {
+    "title": "linux在不安装桌面环境的情况下运行gui程序",
+    "description": "linux实现不安装桌面环境，运行gui程序",
+    "createdTime": "2025/8/10 18:51:43",
+    "updatedTime": "2025/10/16 12:06:18",
+    "readingTime": 2,
+    "category": [
+      "Linux"
+    ],
+    "tag": [
+      "Arch Linux"
+    ],
+    "originBasename": "run-gui-application-without-desktop-environment.md",
+    "url": "posts/run-gui-application-without-desktop-environment.html"
+  },
+  {
+    "title": "各类编程语言编写 Hello World 教程",
+    "description": "编写各类编程语言的 Hello World",
+    "createdTime": "2025/7/5 12:55:23",
+    "updatedTime": "2025/7/13 22:23:30",
+    "readingTime": 2,
+    "category": [
+      "编程语言"
+    ],
+    "tag": [
+      "C",
+      "C 语言"
+    ],
+    "originBasename": "writing-hello-world.md",
+    "url": "posts/writing-hello-world.html"
+  }
+]

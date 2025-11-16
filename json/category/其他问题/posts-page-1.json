@@ -1,0 +1,19 @@
+[
+  {
+    "title": "连接 MongoDB Atlas 时遇到的 srv 无法解析问题",
+    "description": "在连接 MongoDB Atlas 时遇到的 srv 解析问题的解决方法",
+    "createdTime": "2025/11/16 16:34:24",
+    "updatedTime": "2025/11/16 17:00:10",
+    "readingTime": 1,
+    "category": [
+      "数据库",
+      "其他问题"
+    ],
+    "tag": [
+      "MongoDB",
+      "Node.js"
+    ],
+    "originBasename": "mongodb-srv-resolution.md",
+    "url": "posts/mongodb-srv-resolution.html"
+  }
+]
