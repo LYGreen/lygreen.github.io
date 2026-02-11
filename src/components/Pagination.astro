@@ -1,0 +1,135 @@
+---
+
+interface Props {
+    currentPage: number;
+    totalPages: number;
+    baseLink: string;
+}
+
+const { currentPage, totalPages, baseLink } = Astro.props as Props;
+
+const filteredBaseLink = filterLink(baseLink);
+
+// 保留最前面的 '/'，过滤掉最后面的 '/'
+function filterLink(link: string): string {
+    let str = link;
+    str = str.startsWith('/') ? str : '/' + str;
+    str = str.endsWith('/') && str.length > 1 ? str.slice(0, -1) : str;
+    return str;
+}
+
+// 生成分页页码数组的函数
+function generatePageNumbers(current: number, total: number, siblingCount: number = 1) {
+	const pages: (number | string)[] = [];
+	const leftSiblingIndex = Math.max(current - siblingCount, 1);
+	const rightSiblingIndex = Math.min(current + siblingCount, total);
+
+	// 判断是否需要在左边显示省略号
+	const shouldShowLeftDots = leftSiblingIndex > 2;
+	// 判断是否需要在右边显示省略号
+	const shouldShowRightDots = rightSiblingIndex < total - 1;
+
+	// 始终显示第一页
+	pages.push(1);
+
+	// 如果需要左边省略
+	if (shouldShowLeftDots) {
+		pages.push("...");
+	} else if (leftSiblingIndex > 1) {
+		// 如果不需要省略，但有间隙，补上2
+		for (let i = 2; i < leftSiblingIndex; i++) {
+			pages.push(i);
+		}
+	}
+
+	// 显示当前页周围的页码
+	for (let i = leftSiblingIndex; i <= rightSiblingIndex; i++) {
+		if (i !== 1 && i !== total) {
+			pages.push(i);
+		}
+	}
+
+	// 如果需要右边省略
+	if (shouldShowRightDots) {
+		pages.push("...");
+	} else if (rightSiblingIndex < total - 1) {
+		// 如果不需要省略，但有间隙，补上最后几页前的页码
+		for (let i = rightSiblingIndex + 1; i < total; i++) {
+			pages.push(i);
+		}
+	}
+
+	// 如果总页数大于1，始终显示最后一页
+	if (total > 1) {
+		pages.push(total);
+	}
+
+	// 去重
+	return Array.from(new Set(pages));
+}
+
+const pageNumbers = generatePageNumbers(currentPage, totalPages, 1);
+---
+
+<div class="pagination">
+    {currentPage > 1 && (
+        <a href={currentPage === 2 ? `${filteredBaseLink}` : `${filteredBaseLink == '/' ? '' : filteredBaseLink}/pages/${currentPage - 1}`} class="page-item"><i class="fas fa-chevron-left"></i></a>
+    )}
+    {pageNumbers.map((pageNum) => (
+        pageNum === "..." ? (
+            <span class="page-item dots">...</span>
+        ) : (
+            <a 
+                href={pageNum === 1 ? `${filteredBaseLink}` : `${filteredBaseLink == '/' ? '' : filteredBaseLink}/pages/${pageNum}`} 
+                class={`page-item ${currentPage === pageNum ? "active" : ""}`}
+            >
+                {pageNum}
+            </a>
+        )
+    ))}
+    {currentPage < totalPages && (
+        <a href={`${filteredBaseLink == '/' ? '' : filteredBaseLink}/pages/${currentPage + 1}`} class="page-item"><i class="fas fa-chevron-right"></i></a>
+    )}
+</div>
+
+<style>
+    /* ===== 分页组件 ===== */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 40px 0;
+    }
+    .page-item {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--card-bg);
+        border: 2px solid white;
+        border-radius: 12px;
+        color: var(--primary-pink);
+        font-weight: bold;
+        box-shadow: var(--shadow);
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    .page-item:hover, .page-item.active {
+        background: var(--primary-pink);
+        color: white;
+        transform: translateY(-3px);
+        border-color: var(--primary-pink);
+    }
+    .page-item.dots {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        cursor: default;
+    }
+    .page-item.dots:hover {
+        transform: none;
+        color: var(--primary-pink);
+    }
+</style>

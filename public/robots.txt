@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /$
+Allow: /posts/
+Disallow: /
+sitemap: https://lygreen.github.io/sitemap-index.xml

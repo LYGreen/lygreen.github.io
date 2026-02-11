@@ -1,0 +1,39 @@
+---
+interface Props {
+	title?: string;
+	subtitle?: string;
+}
+
+const { title = "❀丽丽云❀", subtitle = "❁丽丽云的博客❁" } = Astro.props as Props;
+---
+
+<header class="hero">
+	<h1>{title}</h1>
+	<p>{subtitle}</p>
+</header>
+
+<style>
+	/* ===== 头部 Hero 区域 ===== */
+	.hero {
+		text-align: center;
+		padding: 60px 20px;
+		background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 100%);
+	}
+	.hero h1 {
+		font-size: 3em;
+		color: var(--dark-pink);
+		text-shadow: 2px 2px 0px #FFF;
+		margin-bottom: 10px;
+		animation: floatTitle 3s ease-in-out infinite;
+	}
+	.hero p { 
+		font-size: 1.1em; 
+		color: #777; 
+	}
+
+	@media (max-width: 768px) {
+		.hero h1 {
+			font-size: 2em;
+		}
+	}
+</style>

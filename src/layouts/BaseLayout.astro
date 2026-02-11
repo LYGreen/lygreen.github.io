@@ -1,0 +1,93 @@
+---
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import Navigation from "../components/Navigation.astro";
+
+interface Props {
+	title?: string;
+}
+
+const { title } = Astro.props as Props;
+---
+
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="alternate" type="application/rss+xml" title="LYGreen's blog" href={new URL("rss.xml", Astro.site)} />
+		<title>{title}</title>
+		<style is:global>
+			:root {
+				--primary-pink: #FF99AC;    /* 樱花粉 */
+				--dark-pink: #FF6B81;       /* 深粉色 */
+				--bg-color: #FFF5F7;        /* 背景淡粉 */
+				--text-color: #554;         /* 深灰字 */
+				--card-bg: rgba(255, 255, 255, 0.85); /* 半透明白 */
+				--shadow: 0 8px 20px rgba(255, 153, 172, 0.2);
+			}
+
+			/* ===== 全局设置 ===== */
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: "Mady", "Rubik", "思源黑体", sans-serif;
+				background-color: var(--bg-color);
+				background-image: radial-gradient(var(--primary-pink) 1px, transparent 1px);
+				background-size: 20px 20px;
+				color: var(--text-color);
+				overflow-x: hidden;
+			}
+
+			a { text-decoration: none; color: inherit; transition: 0.3s; }
+			a:hover { color: var(--dark-pink); }
+			ul { list-style: none; padding: 0; }
+
+			/* ===== 樱花特效 CSS ===== */
+			.sakura {
+				position: fixed;
+				top: -10vh;
+				z-index: 9999;
+				pointer-events: none;
+				animation: fall linear infinite;
+			}
+			@keyframes fall {
+				0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+				100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+			}
+			@keyframes floatTitle {
+				0%, 100% { transform: translateY(0); }
+				50% { transform: translateY(-8px); }
+			}
+		</style>
+	</head>
+	<body>
+		<Navigation />
+		<slot />
+		<script>
+			function createSakura() {
+				const sakura = document.createElement('div');
+				sakura.classList.add('sakura');
+				sakura.innerHTML = '🌸'; 
+				sakura.style.left = Math.random() * 100 + 'vw';
+				sakura.style.fontSize = Math.random() * 20 + 10 + 'px';
+				const duration = Math.random() * 3 + 2; // 2-5秒
+				sakura.style.animationDuration = duration + 's';
+				sakura.style.opacity = Math.random().toString();
+				
+				document.body.appendChild(sakura);
+
+				// 动画完成后再删除，加100ms缓冲
+				setTimeout(() => {
+					sakura.remove();
+				}, duration * 1000 + 100);
+			}
+
+			setInterval(createSakura, 300);
+		</script>
+	</body>
+</html>

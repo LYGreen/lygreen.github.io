@@ -1,0 +1,166 @@
+---
+interface Heading { depth: number; slug: string; text: string }
+interface Props { headings?: Heading[] }
+const { headings = [] } = Astro.props as Props;
+---
+
+<div class="toc" aria-label="目录">
+	{headings.length > 0 ? (
+		<nav>
+			<ul>
+				{headings.map((h) => (
+					<li class="toc-item" style={`padding-left: ${Math.max(0, (h.depth - 2) * 12)}px`}>
+						<a href={`#${h.slug}`} data-slug={h.slug}>{h.text}</a>
+					</li>
+				))}
+			</ul>
+		</nav>
+	) : (
+		<p class="toc-empty">（无目录）</p>
+	)}
+</div>
+
+<style>
+	.toc {
+		background: var(--card-bg);
+		border-radius: 15px;
+		/* padding: 20px; */
+		box-shadow: var(--shadow);
+		border: 2px solid white;
+		font-size: 0.95em;
+		color: var(--text-color);
+		margin-bottom: 20px;
+		max-height: 45vh;
+		overflow-y: auto;
+		overflow-x: hidden;
+		
+		padding: 0 20px 20px 20px; /* 为了 sticky 好看做出的修改 */
+		position: relative; /* required for sticky pseudo-element context */
+	}
+
+	/* ===== 自定义滚动条 ===== */
+	.toc::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	.toc::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	.toc::-webkit-scrollbar-thumb {
+		background: var(--primary-pink);
+		border-radius: 3px;
+	}
+
+	.toc::-webkit-scrollbar-thumb:hover {
+		background: var(--dark-pink);
+	}
+
+	.toc::before {
+		content: "📑 目录";
+		display: block;
+		font-size: 1.1em;
+		font-weight: bold;
+		color: var(--dark-pink);
+		margin-bottom: 15px;
+		padding-bottom: 10px;
+		border-bottom: 2px solid var(--primary-pink);
+
+		/* 使伪元素在 .toc 可滚动容器内固定 */
+		position: sticky;
+		padding-top: 20px; /* 为了 sticky 好看做出的修改 */
+		top: 0px; /* 为了 sticky 好看做出的修改 */
+		z-index: 2;
+		background: var(--card-bg);
+	}
+
+	.toc nav ul { 
+		margin: 0; 
+		padding: 0; 
+		list-style: none; 
+	}
+
+	.toc-item { 
+		margin: 8px 0; 
+	}
+
+	.toc-item a {
+		display: block;
+		color: var(--text-color);
+		text-decoration: none;
+		padding: 8px 12px;
+		border-radius: 8px;
+		transition: all 0.3s ease;
+		border-left: 3px solid transparent;
+	}
+
+	.toc-item a:hover { 
+		background: rgba(255, 153, 172, 0.15);
+		color: var(--dark-pink);
+		border-left-color: var(--primary-pink);
+		transform: translateX(4px);
+	}
+
+	.toc-item a.active { 
+		background: linear-gradient(90deg, rgba(255, 153, 172, 0.2), rgba(255, 107, 129, 0.1));
+		color: var(--dark-pink);
+		border-left-color: var(--dark-pink);
+		font-weight: 600;
+	}
+
+	.toc-empty { 
+		color: #999; 
+		padding: 8px; 
+		text-align: center;
+	}
+
+	@media (max-width: 768px) {
+		.toc { display: none; }
+	}
+</style>
+
+<script>
+	// 在客户端启用滚动高亮（基于 headings 提供的 slug）
+	document.addEventListener('DOMContentLoaded', () => {
+		const toc = document.querySelector('.toc');
+		if (!toc) return;
+
+		const links = toc.querySelectorAll('a[data-slug]');
+		if (!links.length) return;
+
+		const slugList = Array.from(links).map(l => l.getAttribute('data-slug'));
+		const observeTargets = slugList
+			.map(slug => document.getElementById(slug as string))
+			.filter(Boolean);
+
+		if (!observeTargets.length) return;
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				const id = entry.target.id;
+				const link = toc.querySelector(`a[href="#${id}"]`);
+				if (entry.isIntersecting) {
+					links.forEach(l => l.classList.remove('active'));
+					if (link) {
+                        link.classList.add('active');
+
+                        const anchor = link as HTMLAnchorElement;
+                        toc.scrollTo({
+                            top: anchor.offsetTop - toc.clientHeight / 2 + anchor.clientHeight / 2,
+                            behavior: 'smooth'
+                        });
+                    }
+				}
+			});
+		}, { root: null, rootMargin: '0px 0px -85% 0px', threshold: 0 });
+
+		observeTargets.forEach(el => observer.observe(el as Element));
+
+		// 点击锚点时也设为高亮
+		// links.forEach(l => l.addEventListener('click', () => {
+		// 	links.forEach(x => x.classList.remove('active'));
+		// 	l.classList.add('active');
+		// }));
+	});
+
+</script>

@@ -1,0 +1,47 @@
+---
+const { 
+    tags,
+} = Astro.props as { tags: string[] };
+---
+
+<div class="sidebar-tags">
+    <h3>🏷️ 标签</h3>
+    <div class="tags">
+        {tags.map((tag) => <a href={`/tags/${tag}`}>{tag}</a>)}
+    </div>
+</div>
+
+<style>
+    .sidebar-tags {
+        background: var(--card-bg);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow);
+        border: 2px solid white;
+        text-align: center;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    .tags a {
+        display: inline-block;
+        background: #ffe4e1;
+        color: var(--dark-pink);
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.85em;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .tags a:hover {
+        background: var(--dark-pink);
+        color: white;
+    }
+
+</style>

@@ -1,0 +1,24 @@
+{
+  "name": "liblog",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "new:post": "node blog-manager/new-post.mjs",
+    "update:post": "node blog-manager/update-post.mjs",
+    "dev": "npm run update:post && astro dev --host",
+    "build": "npm run update:post && astro build",
+    "preview": "npm run update:post && astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/vue": "^5.1.4",
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "astro": "^5.17.1",
+    "vue": "^3.5.28"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.3"
+  }
+}

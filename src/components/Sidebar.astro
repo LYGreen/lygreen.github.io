@@ -1,0 +1,36 @@
+---
+import Profile from "./Profile.astro"
+import GithubProfile from "./GithubProfile.vue"
+import SidebarTags from "./SidebarTags.astro"
+import SidebarCategories from "./SidebarCategories.astro"
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog");
+const allCategories = Array.from(new Set(allPosts.flatMap(post => post.data.category || [])));
+const allTags = Array.from(new Set(allPosts.flatMap(post => post.data.tags || [])));
+---
+
+<aside>
+	<GithubProfile client:load link="https://api.github.com/users/LYGreen" />
+	<SidebarCategories categories={allCategories} />
+	<SidebarTags tags={allTags} />
+</aside>
+
+<style>
+	aside {
+		align-self: self-start;
+		/* position: sticky; */
+		top: 80px;
+	}
+
+	/* ===== 响应式 ===== */
+    @media (max-width: 768px) {
+        aside {
+            display: grid;
+            grid-template-columns: 1fr;
+			align-self: inherit;
+			position: inherit;
+			top: inherit;
+        }
+    }
+</style>

@@ -1,0 +1,40 @@
+---
+import Profile from "./Profile.astro"
+import GithubProfile from "./GithubProfile.vue"
+import SidebarCategories from "./SidebarCategories.astro"
+import SidebarTags from "./SidebarTags.astro"
+import TableOfContent from "./TableOfContent.astro"
+
+interface Props {
+    headings?: { depth: number; slug: string; text: string }[];
+	categories?: string[];
+    tags?: string[];
+}
+
+const { categories, tags } = Astro.props as Props;
+---
+
+<aside>
+	<TableOfContent headings={Astro.props.headings} />
+	<SidebarCategories categories={categories} />
+	<SidebarTags tags={tags} />
+</aside>
+
+<style>
+	aside {
+		align-self: self-start;
+		position: sticky;
+		top: 80px;
+	}
+
+	/* ===== 响应式 ===== */
+    @media (max-width: 768px) {
+        aside {
+            display: grid;
+            grid-template-columns: 1fr;
+			align-self: inherit;
+			position: inherit;
+			top: inherit;
+        }
+    }
+</style>

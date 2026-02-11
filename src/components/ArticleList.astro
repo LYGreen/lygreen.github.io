@@ -1,0 +1,34 @@
+---
+import type { InferEntrySchema, RenderedContent } from 'astro:content';
+import ArticleCard from './ArticleCard.astro';
+
+interface Post {
+    id: string;
+    body?: string;
+    collection: "blog";
+    data: InferEntrySchema<"blog">;
+    rendered?: RenderedContent;
+    filePath?: string;
+}
+
+interface Props {
+    posts: Post[];
+}
+
+const { posts } = Astro.props as Props;
+
+---
+
+{posts?.map((post) => (
+    <ArticleCard
+        title={post.data.title}
+        description={post.data.description}
+        author={post.data.author}
+        category={post.data.category}
+        tags={post.data.tags}
+        date={post.data.date}
+        link={`/posts/${post.id}`}
+    />
+))}
+
+

@@ -1,0 +1,298 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Footer from "../components/Footer.astro";
+import ArticleSidebar from "../components/ArticleSidebar.astro";
+
+interface Props {
+    title?: string;
+    headings?: { depth: number; slug: string; text: string }[];
+    categories?: string[];
+    tags?: string[];
+}
+
+const { title, headings, categories, tags } = Astro.props as Props;
+---
+
+<BaseLayout title={`${title} | LYGreen's Blog`}>
+    <Hero />
+
+    <div class="post-container">
+        <main class="post-content">
+            <article>
+                <slot />
+            </article>
+        </main>
+
+        <ArticleSidebar headings={headings} categories={categories} tags={tags} />
+    </div>
+
+    <Footer />
+</BaseLayout>
+
+<style>
+    /* ===== 文章头部 ===== */
+    .post-header {
+        background: linear-gradient(
+            135deg,
+            var(--primary-pink) 0%,
+            rgba(255, 153, 172, 0.6) 100%
+        );
+        padding: 60px 20px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .post-header::before {
+        content: "";
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+
+    .post-header::after {
+        content: "";
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        bottom: -75px;
+        left: -75px;
+    }
+
+    .post-title {
+        margin: 0;
+        font-size: 2.5em;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 2;
+        line-height: 1.2;
+        word-wrap: break-word;
+    }
+
+    /* ===== 文章容器 ===== */
+    .post-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) 1fr;
+        gap: 30px;
+    }
+
+    .post-content {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 50px;
+        box-shadow: var(--shadow);
+        border: 2px solid white;
+    }
+
+    /* ===== 文章内容样式 ===== */
+    article :global(h2) {
+        color: var(--dark-pink);
+        font-size: 1.8em;
+        margin: 40px 0 20px 0;
+        padding-bottom: 10px;
+        border-bottom: 3px solid var(--primary-pink);
+    }
+
+    article :global(h3) {
+        color: var(--dark-pink);
+        font-size: 1.4em;
+        margin: 30px 0 15px 0;
+    }
+
+    article :global(p) {
+        line-height: 1.8;
+        margin: 20px 0;
+        color: var(--text-color);
+    }
+
+    article :global(strong) {
+        color: var(--dark-pink);
+        font-weight: bold;
+    }
+
+    article :global(code) {
+        background: #fff0f5;
+        color: var(--dark-pink);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+    }
+
+    article :global(pre) {
+        background: #f5f5f5;
+        border-left: 4px solid var(--primary-pink);
+        padding: 40px 15px 15px; /* 增加顶部 padding 给按钮和标签留位置 [cite: 21] */
+        overflow-x: auto;
+        border-radius: 8px;
+        margin: 20px 0;
+        position: relative; /* 必须：让子元素相对于它定位 */
+    }
+
+    /* 语言标签样式 */
+    article :global(pre::before) {
+        content: attr(data-language); /* 获取 data-language 属性值 */
+        position: absolute;
+        top: 12px;
+        left: 10px;
+        font-size: 12px;
+        color: var(--dark-pink);
+        font-weight: bold;
+    }
+
+    /* 复制按钮样式 (由 JS 注入) */
+    article :global(.copy-button) {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 4px 8px;
+        font-size: 12px;
+        background: #ffe4e1;
+        border: 1px solid var(--primary-pink);
+        border-radius: 4px;
+        color: var(--dark-pink);
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    article :global(.copy-button:hover) {
+        background: var(--primary-pink);
+        color: #ffe4e1;
+    }
+
+    article :global(pre code) {
+        background: none;
+        color: gray;
+        padding: 0;
+    }
+
+    article :global(ul),
+    article :global(ol) {
+        margin: 20px 0;
+        padding-left: 30px;
+    }
+
+    article :global(li) {
+        margin: 10px 0;
+        line-height: 1.8;
+    }
+
+    article :global(blockquote) {
+        border-left: 4px solid var(--primary-pink);
+        background: #fff0f5;
+        padding: 15px 20px;
+        margin: 20px 0;
+        border-radius: 0 8px 8px 0;
+        color: #666;
+    }
+
+    article :global(a) {
+        color: var(--dark-pink);
+        text-decoration: underline;
+        transition: 0.3s;
+    }
+
+    article :global(a:hover) {
+        color: var(--primary-pink);
+    }
+
+    article :global(img) {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(255, 153, 172, 0.2);
+        margin: 20px 0;
+    }
+
+    /* ===== 响应式设计 ===== */
+    @media (max-width: 768px) {
+        .post-container {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .post-container > :global(aside) {
+            display: none;
+        }
+
+        .post-title {
+            font-size: 1.8em;
+        }
+
+        .post-content {
+            padding: 25px;
+        }
+
+        article :global(h2) {
+            font-size: 1.5em;
+        }
+
+        article :global(h3) {
+            font-size: 1.2em;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .post-container {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .post-container > :global(aside) {
+            display: none;
+        }
+
+        .post-title {
+            font-size: 1.4em;
+        }
+
+        .post-content {
+            padding: 15px;
+        }
+
+        .post-header {
+            padding: 40px 20px;
+        }
+    }
+</style>
+
+<script is:inline>
+    function setupCodeBlocks() {
+        const codeBlocks = document.querySelectorAll("pre");
+
+        codeBlocks.forEach((block) => {
+            // 注入复制按钮
+            const code = block.querySelector("code");
+
+            if (!block.querySelector(".copy-button")) {
+                const button = document.createElement("button");
+                button.className = "copy-button";
+                button.innerText = "Copy";
+
+                button.addEventListener("click", async () => {
+                    const text = code?.innerText || "";
+                    await navigator.clipboard.writeText(text);
+
+                    button.innerText = "Copied!";
+                    setTimeout(() => {
+                        button.innerText = "Copy";
+                    }, 2000);
+                });
+
+                block.appendChild(button);
+            }
+        });
+    }
+
+    // 页面加载和 Astro 视图切换时运行
+    setupCodeBlocks();
+    document.addEventListener("astro:after-swap", setupCodeBlocks);
+</script>

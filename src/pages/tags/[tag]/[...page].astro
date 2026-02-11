@@ -1,0 +1,86 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Hero from "../../../components/Hero.astro";
+import Sidebar from "../../../components/Sidebar.astro";
+import Footer from "../../../components/Footer.astro";
+import Pagination from "../../../components/Pagination.astro";
+import ArticleList from "../../../components/ArticleList.astro";
+import { POSTS_PER_PAGE } from "../../../config/config.mts";
+
+export const getStaticPaths = (async () => {
+    const allPosts = await getCollection("blog");
+
+    const tags = allPosts.map(post => post.data.tags || []).flat();
+
+    return [...Array.from(new Set(tags))].flatMap((tag) => { 
+        const filteredPosts = allPosts.filter(post => post.data.tags && post.data.tags.includes(tag));
+        const sortedPosts = filteredPosts.sort((a, b) => new Date(a.data.date as any).getTime() - new Date(b.data.date as any).getTime());
+		const baseLink = `/tags/${tag}`;
+        const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE); 
+
+        return [...Array.from({ length: totalPages })].flatMap((_, index) => {
+            const slicedPosts = sortedPosts.slice(index * POSTS_PER_PAGE, (index + 1) * POSTS_PER_PAGE);
+
+            return {
+                params: {
+                    tag: tag,
+                    page: index == 0 ? undefined : `/pages/${index + 1}`,
+                },
+                props: {
+                    posts: slicedPosts,
+                    currentPage: index + 1,
+                    totalPages: totalPages,
+                    baseLink: baseLink,
+                },
+            };
+        });
+
+    });
+}) satisfies GetStaticPaths;
+
+const { posts, currentPage, totalPages, baseLink } = Astro.props;
+const { tag } = Astro.params;
+---
+
+<BaseLayout title={`标签 - ${tag} | 个人博客 | My Blog`}>
+	<Hero />
+	
+	<div class="container">
+		<main>
+			<ArticleList posts={posts} />
+            <Pagination currentPage={currentPage} totalPages={totalPages} baseLink={baseLink} />
+		</main>
+
+		<Sidebar />
+	</div>
+
+	<Footer />
+</BaseLayout>
+
+<style>
+
+	/* ===== 主容器布局 (Grid) ===== */
+	.container {
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 20px;
+		display: grid;
+		grid-template-columns: 3fr 1fr;
+		gap: 30px;
+	}
+
+	/* ===== 响应式 ===== */
+	@media (max-width: 768px) {
+		.container {
+			grid-template-columns: 1fr;
+		}
+		Sidebar {
+			order: 1;
+		}
+		main {
+			order: 2;
+		}
+	}
+</style>

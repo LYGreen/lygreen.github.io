@@ -1,0 +1,23 @@
+---
+
+---
+
+<footer>
+	<p>Copyright © <span id="year"></span> LYGreen. All Rights Reserved.</p>
+	<p>Powered by Love ❤</p>
+</footer>
+
+<style>
+	/* ===== 页脚 ===== */
+	footer {
+		text-align: center;
+		padding: 40px;
+		color: #888;
+		background: white;
+		margin-top: 50px;
+	}
+</style>
+
+<script is:inline>
+	document.getElementById("year").innerText = new Date().getFullYear();
+</script>

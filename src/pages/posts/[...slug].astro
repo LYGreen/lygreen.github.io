@@ -1,0 +1,106 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, render } from "astro:content";
+import PostLayout from "../../layouts/PostLayout.astro";
+
+interface Heading {
+    depth: number;
+    slug: string;
+    text: string;
+}
+
+export const getStaticPaths = (async () => {
+    const posts = await getCollection("blog");
+
+    return posts.map((post) => ({
+        params: { slug: post.id },
+        props: { post },
+    }));
+}) satisfies GetStaticPaths;
+
+function formatDate(date: Date) {
+    return (
+        `${date.getFullYear()}` +
+        "/" +
+        `${date.getMonth() + 1}` +
+        "/" +
+        `${date.getDate()}` +
+        " " +
+        `${date.getHours().toString().padStart(2, "0")}` +
+        ":" +
+        `${date.getMinutes().toString().padStart(2, "0")}` +
+        ":" +
+        `${date.getSeconds().toString().padStart(2, "0")}`
+    );
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const headings = post.rendered?.metadata?.headings as Heading[] | undefined;
+---
+
+<PostLayout 
+    title={post.data.title} 
+    headings={headings} 
+    categories={[post.data.category as string]}
+    tags={post.data.tags}
+>
+    <div class="meta">
+        <h1>{post.data.title}</h1>
+        <p class="description">{post.data.description}</p>
+        <div class="info">
+            <i class="fas fa-user"></i>
+            <span>作者：{post.data.author}</span>
+        </div>
+        <div class="info">
+            <i class="fas fa-folder"></i>
+            <span>分类：{post.data.category}</span>
+        </div>
+        <div class="info">
+            <i class="far fa-clock"></i>
+            <span>创建时间：{formatDate(post.data.date as Date)}</span>
+        </div>
+        <div class="info">
+            <i class="fa fa-pen-to-square"></i>
+            <span>更新时间：{formatDate(post.data.updated as Date)}</span>
+        </div>
+    </div>
+    <hr />
+    <Content />
+</PostLayout>
+
+<style>
+    .meta .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    .meta .tags span {
+        display: inline-block;
+        background: #ffe4e1;
+        color: var(--dark-pink);
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.85em;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .meta .tags span:hover {
+        background: var(--dark-pink);
+        color: white;
+    }
+
+    .meta h1,
+    .meta p {
+        text-align: center;
+    }
+    .meta .description {
+        font-size: 18px;
+    }
+    .meta .info {
+        font-size: 14px;
+        color: #777;
+    }
+</style>

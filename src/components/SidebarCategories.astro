@@ -1,0 +1,51 @@
+---
+const { 
+    categories,
+} = Astro.props as { categories: string[] };
+---
+
+<div class="sidebar-categories">
+    <h3>📁 分类</h3>
+    <div class="categories">
+        {categories.map((category) => <a href={`/categories/${category}`}>{category}</a>)}
+    </div>
+</div>
+
+<style>
+    .sidebar-categories {
+        background: var(--card-bg);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow);
+        border: 2px solid white;
+        text-align: center;
+    }
+
+    .categories {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+    }
+    
+    .categories:has(:only-child) {
+        display: flex;
+        justify-content: center;
+    }
+
+    .categories a {
+        display: inline-block;
+        background: #ffe4e1;
+        color: var(--dark-pink);
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.85em;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .categories a:hover {
+        background: var(--dark-pink);
+        color: white;
+    }
+
+</style>
