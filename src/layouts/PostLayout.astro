@@ -133,16 +133,22 @@ const { title, headings, categories, tags } = Astro.props as Props;
         padding: 2px 6px;
         border-radius: 4px;
         font-family: "Courier New", monospace;
+
+        /* 防止文字溢出页面 */
+        overflow-wrap: anywhere;
+        white-space: pre-wrap; /* 保留空格 */
     }
 
     article :global(pre) {
         background: #f5f5f5;
         border-left: 4px solid var(--primary-pink);
         padding: 40px 15px 15px; /* 增加顶部 padding 给按钮和标签留位置 [cite: 21] */
-        overflow-x: auto;
         border-radius: 8px;
         margin: 20px 0;
         position: relative; /* 必须：让子元素相对于它定位 */
+
+        /* 去除 pre 的水平滚动条 */
+        /* overflow-x: initial !important; */
     }
 
     /* 语言标签样式 */
@@ -178,14 +184,41 @@ const { title, headings, categories, tags } = Astro.props as Props;
 
     article :global(pre code) {
         background: none;
-        color: gray;
+        color: #E6EDF3;
         padding: 0;
+
+        /* 代码块内的滚动条 */
+        display: block;
+        overflow-x: auto;
+        white-space: unset;
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary-pink) transparent;
+    }
+    
+    article :global(pre code)::-webkit-scrollbar {
+        /* 整个滚动条 */
+        height: 4px;
+    }
+
+    article :global(pre code)::-webkit-scrollbar-thumb {
+        /* 滑块 */
+        background: var(--primary-pink);
+        border-radius: 8px;
+        transition: background 0.3 ease;
+    }
+    
+    article :global(pre code)::-webkit-scrollbar-thumb:hover {
+        background: var(--dark-pink);
+        transition: background 0.3 ease;
     }
 
     article :global(ul),
     article :global(ol) {
         margin: 20px 0;
         padding-left: 30px;
+
+        /* 保留 Markdown 的默认样式 */
+        list-style: initial;
     }
 
     article :global(li) {
