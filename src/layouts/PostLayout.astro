@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import Footer from "../components/Footer.astro";
 import ArticleSidebar from "../components/ArticleSidebar.astro";
+import Comment from "../components/Comment.astro";
 
 interface Props {
     title?: string;
@@ -25,12 +26,17 @@ const { title, headings, categories, tags } = Astro.props as Props;
         </main>
 
         <ArticleSidebar headings={headings} categories={categories} tags={tags} />
+        <Comment />
     </div>
 
     <Footer />
 </BaseLayout>
 
 <style>
+    .post-container > :global(aside) {
+        grid-column: 2 / 3;
+    }
+
     /* ===== 文章头部 ===== */
     .post-header {
         background: linear-gradient(
