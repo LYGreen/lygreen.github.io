@@ -30,19 +30,16 @@ onMounted(async () => {
 
 <template>
     <div class="github-profile" v-if="Object.keys(user).length !== 0">
+
         <div class="avatar">
             <img :src="user.avatar_url" alt="avatar">
         </div>
         <h2 class="name">{{ user.name }}</h2>
         <p class="login">{{ user.login }}</p>
         <p class="bio">{{ user.bio }}</p>
-        <hr>
-        <span class="follow">{{ user.followers }} followers · {{ user.following }} following</span>
-        <span class="date">Created at: {{ user.created_at }}</span>
-        <span class="date">Updated at: {{ user.updated_at }}</span>
-        <div style="margin-top:15px;">
-            <a :href="user.html_url" target="_blank" style="font-size: 1.2em; margin: 0 5px; color: #555;">
-                <i class="fab fa-github" style="font-size: 1.2em; margin: 0 5px; color: #555;"></i>
+        <div class="links">
+            <a :href="user.html_url" target="_blank" style="font-size: 1.2em; color: #555;">
+                <i class="fab fa-github" style="font-size: 1.2em; color: #555;"></i>
             </a>
             <a href="/rss.xml" target="_blank">
                 <i class="fas fa-rss" style="color: #FF6600; font-size: 1.2em;"></i>
@@ -52,54 +49,45 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-
     /* ===== 个人信息 ===== */
+    .github-profile {
+        margin-bottom: 10px;
+        border-bottom: 2px dashed var(--primary-pink);
+    }
+
+    .links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px 0;
+        gap: 8px;
+    }
+
+    .avatar, .name, .login {
+        margin: 0 auto;
+        text-align: center;
+    }
+
     .name {
-        margin-bottom: 0;
+        font-size: 24px;
     }
 
     .login {
-        margin-top: 0;
+        font-size: 18px;
     }
 
     .bio {
         text-align: left;
         width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 8px auto;
         font-size: 16px;
-    }
-
-    .follow, .date {
-        text-align: start;
-        display: block;
-    }
-
-    .follow {
-        font-size: 16px;
-    }
-
-    .date {
-        font-size: 12px;
-        color: gray;
-    }
-
-    .github-profile {
-        background: var(--card-bg);
-        border-radius: 15px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: var(--shadow);
-        border: 2px solid white;
-        text-align: center;
     }
 
     .avatar {
-        width: 100px;
-        height: 100px;
+        width: 75px;
+        height: 75px;
         border-radius: 50%;
         border: 4px solid var(--primary-pink);
-        margin: 0 auto 10px;
         background-color: #eee;
         overflow: hidden;
     }

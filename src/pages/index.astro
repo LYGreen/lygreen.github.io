@@ -44,16 +44,18 @@ const baseLink = "/";
 		gap: 30px;
 	}
 
+	aside {
+		align-self: self-start;
+		top: 80px;
+	}
+
 	/* ===== 响应式 ===== */
 	@media (max-width: 768px) {
 		.container {
 			grid-template-columns: 1fr;
 		}
 		:global(aside) {
-			order: 1;
-		}
-		main {
-			order: 2;
+			display: none;
 		}
 	}
 </style>

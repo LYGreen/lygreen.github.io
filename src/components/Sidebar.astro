@@ -17,14 +17,14 @@ const allTags = Array.from(new Set(allPosts.flatMap(post => post.data.tags || []
 </aside>
 
 <style>
-	aside {
+	/* aside {
 		align-self: self-start;
-		/* position: sticky; */
+		position: sticky;
 		top: 80px;
-	}
+	} */
 
 	/* ===== 响应式 ===== */
-    @media (max-width: 768px) {
+    /* @media (max-width: 768px) {
         aside {
             display: grid;
             grid-template-columns: 1fr;
@@ -32,5 +32,5 @@ const allTags = Array.from(new Set(allPosts.flatMap(post => post.data.tags || []
 			position: inherit;
 			top: inherit;
         }
-    }
+    } */
 </style>
