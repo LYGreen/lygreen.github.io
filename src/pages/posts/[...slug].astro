@@ -59,11 +59,21 @@ const headings = post.rendered?.metadata?.headings as Heading[] | undefined;
         </div>
         <div class="info">
             <i class="far fa-clock"></i>
-            <span>创建时间：<LocalTime client:load date={post.data.date as Date} /></span>
+            <span>
+                创建时间：
+                <LocalTime client:only="vue" date={post.data.date as Date}>
+                    <span slot="fallback">{ post.data.date?.toLocaleString() }</span>
+                </LocalTime>
+            </span>
         </div>
         <div class="info">
             <i class="fa fa-pen-to-square"></i>
-            <span>更新时间：<LocalTime client:load date={post.data.updated as Date} /></span>
+            <span>
+                更新时间：
+                <LocalTime client:only="vue" date={post.data.updated as Date}>
+                    <span slot="fallback">{ post.data.date?.toLocaleString() }</span>
+                </LocalTime>
+            </span>
         </div>
     </div>
     <hr />

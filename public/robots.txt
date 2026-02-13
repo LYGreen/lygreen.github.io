@@ -3,4 +3,4 @@ Allow: /$
 Allow: /posts/
 Allow: /sitemap*.xml
 Disallow: /
-sitemap: https://lygreen.github.io/sitemap-index.xml
+Sitemap: https://lygreen.github.io/sitemap-index.xml

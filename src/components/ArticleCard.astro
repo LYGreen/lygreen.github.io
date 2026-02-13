@@ -38,7 +38,9 @@ const {
 					<i class="fas fa-folder"></i>
 					<span>{category} |</span>
 					<i class="far fa-clock"></i>
-					<LocalTime client:load date={date as Date} />
+					<LocalTime client:only="vue" date={date as Date}>
+						<span slot="fallback">{ date?.toLocaleString() }</span>
+					</LocalTime>
 				</div>
 				<p class="post-desc">{description}</p>
 			</a>
