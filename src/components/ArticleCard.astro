@@ -1,4 +1,6 @@
 ---
+import LocalTime from './LocalTime.vue';
+
 interface Props {
 	title?: string;
 	description?: string;
@@ -20,22 +22,6 @@ const {
 	link,
 } = Astro.props as Props;
 
-function formatDate(date: Date) {
-    return (
-        `${date.getFullYear()}` +
-        "/" +
-        `${date.getMonth() + 1}` +
-        "/" +
-        `${date.getDate()}` +
-        " " +
-        `${date.getHours().toString().padStart(2, "0")}` +
-        ":" +
-        `${date.getMinutes().toString().padStart(2, "0")}` +
-        ":" +
-        `${date.getSeconds().toString().padStart(2, "0")}`
-    );
-}
-
 ---
 
 <article>
@@ -48,11 +34,11 @@ function formatDate(date: Date) {
 				<h2>{title}</h2>
 				<div class="post-meta">
 					<i class="fas fa-user"></i>
-					{author} |
+					<span>{author} |</span>
 					<i class="fas fa-folder"></i>
-					{category} |
+					<span>{category} |</span>
 					<i class="far fa-clock"></i>
-					{formatDate(date as Date)}
+					<LocalTime client:load date={date as Date} />
 				</div>
 				<p class="post-desc">{description}</p>
 			</a>

@@ -1,13 +1,10 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
-import BaseLayout from "../../../layouts/BaseLayout.astro";
-import Hero from "../../../components/Hero.astro";
-import Sidebar from "../../../components/Sidebar.astro";
-import Footer from "../../../components/Footer.astro";
 import Pagination from "../../../components/Pagination.astro";
 import ArticleList from "../../../components/ArticleList.astro";
 import { POSTS_PER_PAGE } from "../../../config/config.mts";
+import HomeLayout from "../../../layouts/HomeLayout.astro";
 
 export const getStaticPaths = (async () => {
     const allPosts = await getCollection("blog");
@@ -44,20 +41,10 @@ const { posts, currentPage, totalPages, baseLink } = Astro.props;
 const { category } = Astro.params;
 ---
 
-<BaseLayout title={`分类 - ${category} | 个人博客 | My Blog`}>
-	<Hero />
-	
-	<div class="container">
-		<main>
-			<ArticleList posts={posts} />
-            <Pagination currentPage={currentPage} totalPages={totalPages} baseLink={baseLink} />
-		</main>
-
-		<Sidebar />
-	</div>
-
-	<Footer />
-</BaseLayout>
+<HomeLayout title={`分类 - ${category} | 个人博客 | My Blog`}>
+	<ArticleList posts={posts} />
+    <Pagination currentPage={currentPage} totalPages={totalPages} baseLink={baseLink} />
+</HomeLayout>
 
 <style>
 

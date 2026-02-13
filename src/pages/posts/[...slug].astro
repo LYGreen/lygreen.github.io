@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection, render } from "astro:content";
 import PostLayout from "../../layouts/PostLayout.astro";
+import LocalTime from "../../components/LocalTime.vue";
 
 interface Heading {
     depth: number;
@@ -58,11 +59,11 @@ const headings = post.rendered?.metadata?.headings as Heading[] | undefined;
         </div>
         <div class="info">
             <i class="far fa-clock"></i>
-            <span>创建时间：{formatDate(post.data.date as Date)}</span>
+            <span>创建时间：<LocalTime client:load date={post.data.date as Date} /></span>
         </div>
         <div class="info">
             <i class="fa fa-pen-to-square"></i>
-            <span>更新时间：{formatDate(post.data.updated as Date)}</span>
+            <span>更新时间：<LocalTime client:load date={post.data.updated as Date} /></span>
         </div>
     </div>
     <hr />
