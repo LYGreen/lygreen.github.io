@@ -253,6 +253,39 @@ const { title, headings, categories, tags } = Astro.props as Props;
         margin: 20px 0;
     }
 
+    /* ===== 文章正文内的表格样式 ===== */
+    article :global(table) {
+        border-collapse: separate; 
+        border-spacing: 0;
+        border-radius: 12px;
+        border: 2px solid #FFE4E1;
+        overflow: hidden;
+        overflow-x: auto;
+    }
+
+    article :global(th) {
+        background-color: #FFE4E1; /* 表头使用淡粉色底 */
+        color: var(--dark-pink);   /* 深粉色字，保证对比度和清晰度 */
+        padding: 12px 15px;
+        font-weight: bold;
+        text-align: left; /* 正文表格一般左对齐更利于阅读 */
+    }
+
+    article :global(td) {
+        padding: 12px 15px;
+        border-top: 1px dashed #FFE4E1; /* 行与行之间用萌萌的虚线隔开 */
+        color: var(--text-color);
+    }
+
+    article :global(td:not(:first-child)) {
+        border-left: 1px dashed #FFE4E1; /* 列与列之间的分割线 */
+    }
+
+    /* 鼠标轻轻滑过时的效果（极淡的粉色） */
+    article :global(tbody tr:hover td) {
+        background-color: rgba(255, 153, 172, 0.08); 
+    }
+
     /* ===== 响应式设计 ===== */
     @media (max-width: 768px) {
         .post-container {
