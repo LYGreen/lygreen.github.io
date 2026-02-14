@@ -25,3 +25,5 @@ pnpm-debug.log*
 
 # Articles
 _*.md
+# github workflows
+.github/
