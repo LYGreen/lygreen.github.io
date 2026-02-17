@@ -5,7 +5,7 @@ import vue from '@astrojs/vue';
 
 import sitemap from "@astrojs/sitemap";
 
-const domain = 'https://lygreen.github.io';
+const domain = 'https://lygreen.top';
 
 // https://astro.build/config
 export default defineConfig({
