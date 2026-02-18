@@ -53,7 +53,7 @@ xclock
 ```
 2. 切换到终端tty1，```Ctrl + Alt + F1``` ，此时会看到一个gui程序显示了出来
 ![](/img-run-gui-application-without-desktop-environment/img1.png)
-::: info
+:::info
 在opencv开发过程中能正常显示gui，默认不是全屏，窗口可以进行拖动
 :::
 
