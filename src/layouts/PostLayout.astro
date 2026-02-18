@@ -286,6 +286,74 @@ const { title, headings, categories, tags } = Astro.props as Props;
         background-color: rgba(255, 153, 172, 0.08); 
     }
 
+    /* ===== 提示框 (:::text :::, Admonitions) 样式 ===== */
+    :global(.admonition) {
+        margin: 1.5rem 0;
+        padding: 15px 20px;
+        border-radius: 15px;
+        border-left: 6px solid #ccc;
+        background: var(--card-bg);
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* 提示框共同的标题样式 */
+    :global(.admonition::before) {
+        font-family: "Font Awesome 7 Free";
+        font-weight: 900;
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1.1em;
+    }
+
+    /* Info 类型 - 蓝色系 */
+    :global(.admonition.info) {
+        border-left-color: #74b9ff;
+        background: rgba(232, 244, 255, 0.9);
+    }
+    :global(.admonition.info::before) {
+        content: "\f05a  信息"; /* FontAwesome Info Icon */
+        color: #0984e3;
+    }
+
+    /* Tip 类型 - 绿色系 */
+    :global(.admonition.tip) {
+        border-left-color: #55efc4;
+        background: rgba(230, 255, 241, 0.9);
+    }
+    :global(.admonition.tip::before) {
+        content: "\f0eb  小技巧"; /* FontAwesome Lightbulb Icon */
+        color: #00b894;
+    }
+
+    /* Warning 类型 - 橙色系 */
+    :global(.admonition.warning) {
+        border-left-color: #ffeaa7;
+        background: rgba(255, 250, 230, 0.9);
+    }
+    :global(.admonition.warning::before) {
+        content: "\f071  注意"; /* FontAwesome Warning Icon */
+        color: #d63031;
+    }
+
+    /* Danger 类型 - 红色系 (符合你原本的深粉色调) */
+    :global(.admonition.danger) {
+        border-left-color: var(--dark-pink);
+        background: rgba(255, 240, 243, 0.9);
+    }
+    :global(.admonition.danger::before) {
+        content: "\f06a  危险"; /* FontAwesome Circle Exclamation Icon */
+        color: var(--dark-pink);
+    }
+
+    /* 让提示框内的文字间距更舒服 */
+    :global(.admonition p) {
+        margin: 5px 0;
+        line-height: 1.6;
+        color: #444;
+    }
+
     /* ===== 响应式设计 ===== */
     @media (max-width: 768px) {
         .post-container {
