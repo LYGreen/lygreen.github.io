@@ -13,7 +13,7 @@ export const getStaticPaths = (async () => {
 
     return [...Array.from(new Set(tags))].flatMap((tag) => { 
         const filteredPosts = allPosts.filter(post => post.data.tags && post.data.tags.includes(tag));
-        const sortedPosts = filteredPosts.sort((a, b) => new Date(a.data.date as any).getTime() - new Date(b.data.date as any).getTime());
+        const sortedPosts = filteredPosts.sort((a, b) => new Date(b.data.date as any).getTime() - new Date(a.data.date as any).getTime());
 		const baseLink = `/tags/${tag}`;
         const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE); 
 
