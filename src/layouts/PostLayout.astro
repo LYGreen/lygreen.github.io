@@ -218,7 +218,7 @@ const { title, headings, categories, tags } = Astro.props as Props;
         padding-left: 30px;
 
         /* 保留 Markdown 的默认样式 */
-        list-style: initial;
+        list-style: revert;
     }
 
     article :global(li) {
