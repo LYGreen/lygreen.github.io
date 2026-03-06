@@ -3,7 +3,7 @@ title: 'Pandas 笔记(1): 创建与读写'
 description: 'Python 数据处理库使用方法'
 author: LYGreen
 date: 2026-02-24T14:02:23+08:00
-updated: 2026-02-24T14:02:23+08:00
+updated: 2026-03-06T09:32:24+08:00
 category: 数据分析
 tags: ['Pandas', 'Python']
 ---
@@ -160,5 +160,6 @@ df.to_sql("table_name", conn, if_exists="replace")
 ```
 
 ## 资源
-ChatGPT
-[Kaggle Course](https://www.kaggle.com/code/residentmario/creating-reading-and-writing)
+- Gemini
+- ChatGPT
+- [Kaggle Course](https://www.kaggle.com/code/residentmario/creating-reading-and-writing)

@@ -3,7 +3,7 @@ title: 'Pandas 笔记(2): 索引、选择和赋值'
 description: 'Python 数据处理库使用方法'
 author: LYGreen
 date: 2026-03-02T16:29:08+08:00
-updated: 2026-03-02T16:29:08+08:00
+updated: 2026-03-06T09:32:24+08:00
 category: 数据分析
 tags: ['Pandas', 'Python']
 ---
@@ -126,4 +126,7 @@ df.loc[df['total_bill'] > 40, 'tip'] = 0
 ## 示例
 示例数据集：[tip.csv](https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv)
 
-
+## 资源
+- Gemini
+- ChatGPT
+- [Kaggle Course](https://www.kaggle.com/code/residentmario/indexing-selecting-assigning)

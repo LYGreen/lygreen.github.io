@@ -3,7 +3,7 @@ title: 'Pandas 笔记(3): 统计函数与映射操作'
 description: 'Python 数据处理库使用方法'
 author: LYGreen
 date: 2026-03-03T16:20:46+08:00
-updated: 2026-03-03T16:20:46+08:00
+updated: 2026-03-06T09:34:01+08:00
 category: 数据分析
 tags: ['Pandas', 'Python']
 ---
@@ -136,3 +136,8 @@ d    6
 e    7
 dtype: int64
 ```
+
+## 资源
+- Gemini
+- ChatGPT
+- [Kaggle Course](https://www.kaggle.com/code/residentmario/summary-functions-and-maps)
