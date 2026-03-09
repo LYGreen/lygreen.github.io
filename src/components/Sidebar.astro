@@ -11,7 +11,8 @@ const allTags = Array.from(new Set(allPosts.flatMap(post => post.data.tags || []
 ---
 
 <aside>
-	<GithubProfile client:load link="https://api.github.com/users/LYGreen" />
+	<!-- <GithubProfile client:load link="https://api.github.com/users/LYGreen" /> -->
+	<Profile />
 	<SidebarCategories categories={allCategories} />
 	<SidebarTags tags={allTags} />
 </aside>

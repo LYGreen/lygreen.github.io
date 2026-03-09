@@ -1,5 +1,6 @@
 ---
 import MobileSidebarGithubProfile from "./MobileSidebarGithubProfile.vue";
+import Profile from "./Profile.astro";
 
 const BaseUrl = import.meta.env.BASE_URL || "/";
 ---
@@ -27,7 +28,8 @@ const BaseUrl = import.meta.env.BASE_URL || "/";
             <i class="fas fa-times"></i>
         </div>
     </div>
-    <MobileSidebarGithubProfile client:load link="https://api.github.com/users/lygreen" />
+    <!-- <MobileSidebarGithubProfile client:load link="https://api.github.com/users/lygreen" /> -->
+    <Profile />
     <div class="mobile-nav-links">
         <a href="/"><i class="fas fa-home"></i> 首页</a>
         <a href="#"><i class="fas fa-comment"></i> 留言</a>
