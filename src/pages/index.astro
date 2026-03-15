@@ -1,16 +1,14 @@
 ---
-import { getCollection } from "astro:content";
 import Pagination from "../components/Pagination.astro";
 import ArticleList from "../components/ArticleList.astro";
 import { POSTS_PER_PAGE } from "../config/config.mts";
 import HomeLayout from "../layouts/HomeLayout.astro";
+import { getSortedPosts, getPagedPosts } from "../tools/tools.mts";
 
 const currentPage = 1;
-const allPosts = await getCollection("blog");
-const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date as any).getTime() - new Date(a.data.date as any).getTime());
-const posts = sortedPosts.slice(0, POSTS_PER_PAGE);
-const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
 const baseLink = "/";
+const sortedPosts = await getSortedPosts(true);
+const { splicedPosts: posts, totalPages } = getPagedPosts(sortedPosts, POSTS_PER_PAGE, currentPage);
 
 ---
 

@@ -1,18 +1,9 @@
 ---
-import type { InferEntrySchema, RenderedContent } from 'astro:content';
+import { type CollectionEntry } from 'astro:content';
 import ArticleCard from './ArticleCard.astro';
 
-interface Post {
-    id: string;
-    body?: string;
-    collection: "blog";
-    data: InferEntrySchema<"blog">;
-    rendered?: RenderedContent;
-    filePath?: string;
-}
-
 interface Props {
-    posts: Post[];
+    posts: CollectionEntry<"blog">[];
 }
 
 const { posts } = Astro.props as Props;
@@ -28,6 +19,7 @@ const { posts } = Astro.props as Props;
         tags={post.data.tags}
         date={post.data.date}
         link={`/posts/${post.id}`}
+        pin={post.data.pin}
     />
 ))}
 

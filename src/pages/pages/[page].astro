@@ -1,26 +1,25 @@
 ---
 import type { GetStaticPaths } from "astro";
-import { getCollection } from "astro:content";
 import Pagination from "../../components/Pagination.astro";
 import ArticleList from "../../components/ArticleList.astro";
 import { POSTS_PER_PAGE } from "../../config/config.mts";
 import HomeLayout from "../../layouts/HomeLayout.astro";
+import { getSortedPosts, getPagedPosts } from "../../tools/tools.mts";
 
 export const getStaticPaths = (async () => {
-    const allPosts = await getCollection("blog");
     const baseLink = "/";
-	const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
-	
-    const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date as any).getTime() - new Date(a.data.date as any).getTime());
-	const postsFronSecondPage = sortedPosts.slice(POSTS_PER_PAGE);
-    const totalSlicedPages = Math.ceil(postsFronSecondPage.length / POSTS_PER_PAGE);
-	
-    return [...Array(totalSlicedPages)].map((_, index) => {
+	const allSortedPosts = await getSortedPosts(true);
+	const totalPages = Math.ceil(allSortedPosts.length / POSTS_PER_PAGE);
+
+    return [...Array(totalPages - 1)].map((_, index) => {
+		const currentPage = index + 2;
+		const { splicedPosts: posts } = getPagedPosts(allSortedPosts, POSTS_PER_PAGE, currentPage);
+
         return {
-            params: { page: `${index + 2}` },
+            params: { page: `${currentPage}` },
             props: { 
-                posts: postsFronSecondPage.slice(index * POSTS_PER_PAGE, (index + 1) * POSTS_PER_PAGE),
-                currentPage: index + 2,
+                posts: posts,
+                currentPage: currentPage,
                 totalPages: totalPages,
                 baseLink: baseLink,
             },

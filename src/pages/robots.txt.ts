@@ -6,6 +6,7 @@ Allow: /$
 Allow: /posts/
 Allow: /sitemap*.xml
 Disallow: /
+Disallow: /posts/my-thoughts/
 Sitemap: ${sitemapURL.href}
 `;
 
